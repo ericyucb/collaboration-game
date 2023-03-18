@@ -1,50 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import { Cell } from './Cell';
 import { Player } from './Player';
 import { Item } from './Item';
 
-export function Board({ board, playerPositions }) {
-  const numRows = 6;
-  const numCols = 6;
+export function Board({ board, playerPositions, movePlayer }) {
+  const numRows = board.length;
+  const numCols = board[0].length;
 
-  const [boardArr, setBoardArr] = useState(board);
+  const generateCells = (numRows, numCols, playerPositions) => {
+    const cells = [];
+    for (let r = 0; r < numRows; r++) {
+      for (let c = 0; c < numCols; c++) {
+        const playerNum = playerPositions.findIndex(position => r === position[0] && c === position[1]);
+        const maxAbsVal = arr => Math.max(...arr.map(Math.abs))
+        const playerAdj = playerPositions.map(
+          positions => maxAbsVal([positions[0] - r, positions[1] - c]) === 1
+        ).reduce((acc, val, index) => val ? acc.concat([index + 1]) : acc, []);
 
-  const generateRows = (numRows, numCols) => {
-    const rows = [];
-    for (let i = 0; i < numRows; i++) {
-      rows.push(<Row key={i} rowNum={i} rowArr={boardArr[i]} playerPositions={playerPositions} />);
+        cells.push(
+          <Cell
+            key={`${r} ${c}`}
+            row={r} col={c}
+            movePlayer={movePlayer}
+            dropTargets={playerAdj}
+          >
+            {board[r][c] === 0 ? null : <Item type={board[r][c] - 1} />}
+            {playerNum === -1 ? null : <Player number={playerNum + 1} />}
+          </Cell>
+        );
+      }
     }
 
-    return rows;
+    return cells;
   }
 
   return (
-    <div className='board'>
-      {generateRows(numRows, numCols)}
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className='board' style={{gridTemplateRows: `repeat(${numRows}, 1fr)`, gridTemplateColumns: `repeat(${numCols}, 1fr)`}}>
+        {generateCells(numRows, numCols, playerPositions)}
+      </div>
+    </DndProvider>
   );
-}
-
-export function Row({ rowNum, rowArr, playerPositions }) {
-  const generateRow = rowArr => {
-    const row = [];
-    for (let i = 0; i < rowArr.length; i++) {
-      row.push(
-        <Cell key={i}>
-          {rowArr[i] === 0 ? null : <Item type={rowArr[i] - 1} />}
-          {playerPositions.map(
-            (position, index) => rowNum === position[0] && i === position[1] ? <Player number={index + 1} /> : null
-          )}
-        </Cell>
-      );
-    }
-    
-    return row;
-  }
-
-  return (
-    <div className='row'>
-      {generateRow(rowArr)}
-    </div>
-  )
 }

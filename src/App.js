@@ -13,7 +13,7 @@ function App() {
         [1, 1, 1, 0, 0, 2],
         [0, 1, 1, 3, 2, 2],
       ],
-      playerPositions: [[5, 0], [0, 5]]
+      playerPositions: [[5, 0]]
     }
   ]
 
