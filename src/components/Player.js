@@ -1,7 +1,9 @@
 import React from "react";
 
-export function Player() {
+export function Player({ number }) {
   return (
-    <div className='player' />
+    <h1 className='player'>
+      {`P${number}`}
+    </h1>
   );
 }
