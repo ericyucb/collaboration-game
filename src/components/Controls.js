@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Controls() {
+export function Controls({collectItem}) {
   return (
     <div className='controls'>
-      <div className='controlButton'>
+      <div className='controlButton' onClick={collectItem}>
         <h3>Collect</h3>
       </div>
       <div className='controlButton'>
@@ -12,3 +12,4 @@ export function Controls() {
     </div>
   )
 }
+

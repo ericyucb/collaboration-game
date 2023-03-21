@@ -107,6 +107,11 @@
   margin: 5px 0px;
 }
 
+.listItemComplete {
+  margin: 5px 0px;
+  text-decoration: line-through;
+}
+
 .controls {
   width: 810px;
   height: 150px;
