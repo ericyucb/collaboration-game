@@ -40,7 +40,7 @@ export function Row({ rowArr }) {
     for (let i = 0; i < rowArr.length; i++) {
       row.push(
         <Cell key={i}>
-          {rowArr[i] === 'player' ? <Player /> : <Item>{rowArr[i]}</Item> }
+          {rowArr[i] === 'player' ? <Player x='0' y='0'/> : <Item>{rowArr[i]}</Item> }
         </Cell>
       );
     }
