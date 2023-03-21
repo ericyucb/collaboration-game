@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDrag } from 'react-dnd';
 
-export function Player() {
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
+export function Player({ number }) {
+  const [, drag] = useDrag(() => ({
+    type: `p${number}`,
+  }))
+
   return (
-    <div className='player' />
+    <div className='target' ref={drag}>
+      <h1 className='player'>
+        {`P${number}`}
+      </h1>
+    </div>
   );
 }

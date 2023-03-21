@@ -1,8 +1,17 @@
-.board {
-  padding: 10px;
+.game {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.gameBoard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
 }
 
 .row {
@@ -20,9 +29,108 @@
 }
 
 .player {
-  width: 30px;
-  height: 30px;
-  background-color: red;
-  border: solid 1px red;
-  border-radius: 15px;
+  position: absolute;
+}
+
+.item {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.target {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.target:hover {
+  background-color: silver;
+}
+
+.cellDropTarget {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlightPossible {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: rgb(211,211,211, 0.5);
+  position: absolute;
+}
+
+.highlightHover {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: rgb(171, 255, 46, 0.5);
+  position: absolute;
+}
+
+.dashboard {
+  margin: 0px 10px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roundTitle {
+  margin: 0;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listItem {
+  margin: 5px 0px;
+}
+
+.controls {
+  width: 810px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.controlButton {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px 20px;
+  margin: 0px 50px;
+  cursor: pointer;
+}
+
+.controlButton:hover {
+  background-color: rgb(211, 211, 211, 0.5);
+}
+
+.controlButton > h3 {
+  margin: 0px;
 }
