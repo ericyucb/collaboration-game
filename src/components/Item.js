@@ -1,9 +1,9 @@
 import React from "react";
 
-export function Item({ children }) {
+export function Item({ type, display = 'center' }) {
+  const colors = ['pink', 'red', 'blue'];
+
   return (
-    <div className='item'>
-      {children}
-    </div>
+    <div className='item' style={{backgroundColor: colors[type]}} />
   );
 }

@@ -1,9 +1,25 @@
 import React from 'react';
 
-export function Cell({ children }) {
+import { CellDropTarget } from './CellDropTarget';
+
+export function Cell({ row, col, movePlayer, dropTargets, visionAdj, children }) {
+  if (!visionAdj) {
+    return (
+      <div className='cell invis' />
+    )
+  }
+
   return (
-    <div className='cell'>
+    dropTargets.length === 0 ?
+    <div
+      className='cell'
+    >
       {children}
-    </div>
+    </div> :
+    <CellDropTarget row={row} col={col} dropTargets={dropTargets} movePlayer={movePlayer}>
+      <div className='cell'>
+        {children}
+      </div>
+    </CellDropTarget>
   );
 }
