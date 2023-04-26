@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Board } from './Board';
 import { Dashboard } from './Dashboard';
@@ -6,37 +6,51 @@ import { Controls } from './Controls';
 
 export function Game({ setup }) {
   const [board, setBoard] = useState(setup.board);
-  const [playerPositions, setPlayerPositions] = useState(setup.playerPositions.map(position => position.map(coord => coord)));
   const [bag, setBag] = useState(setup.goal.map(() => 0));
-  const [round, setRound] = useState(1);
+  const [round, setRound] = useState(0);
+  const [playersHistory, setPlayersHistory] = useState(setup.playerPositions.map(position => [position.map(coord => coord)]));
+
+  const getPlayerPositions = (playersHistory) => {
+    console.log(playersHistory);
+    return playersHistory.map(playerHistory => playerHistory[playerHistory.length - 1])
+  }
 
   const movePlayer = (itemType, row, col) => {
-    const updatePlayerPositions = playerPositions => {
+    const updatePlayersHistory = playersHistory => {
       const playerNum = parseInt(itemType.slice(-1));
-      const copyPlayerPositions = playerPositions.map(position => position.map(coord => coord));
-      copyPlayerPositions[playerNum - 1] = [row, col];
-      return copyPlayerPositions;
+      const copyPlayersHistory = playersHistory.map(
+        playerHistory => playerHistory.map(position => position.map(coord => coord))
+      );
+      copyPlayersHistory[playerNum - 1].push([row, col]);
+      return copyPlayersHistory;
     }
-    setPlayerPositions(updatePlayerPositions);
+
+    setPlayersHistory(updatePlayersHistory);
+    setRound(round => round + 1);
   }
 
   const collectItem = () => {
-    console.log('collect');
+    const playerPositions = getPlayerPositions(playersHistory);
     const pRow = playerPositions[0][0];
     const pCol = playerPositions[0][1];
     const currItem = board[pRow][pCol] - 1;
-    const updateBoard = board => {
-      const copyBoard = board.map(row => row.map(col => col));
-      copyBoard[pRow][pCol] = 0;
-      return copyBoard;
+
+    if (currItem !== -1) {
+      const updateBoard = board => {
+        const copyBoard = board.map(row => row.map(col => col));
+        copyBoard[pRow][pCol] = 0;
+        return copyBoard;
+      }
+      const updateBag = bag => {
+        const copyBag = bag.filter(() => true);
+        copyBag[currItem] += 1;
+        return copyBag
+      }
+  
+      setBoard(updateBoard);
+      setBag(updateBag);
+      setRound(round => round + 1);
     }
-    setBoard(updateBoard);
-    const updateBag = bag => {
-      const copyBag = bag.filter(() => true);
-      copyBag[currItem] += 1;
-      return copyBag
-    }
-    setBag(updateBag);
   }
 
   return (
@@ -45,7 +59,7 @@ export function Game({ setup }) {
       <div className='gameBoard'>
         <Board
           board={board}
-          playerPositions={playerPositions}
+          playerPositions={getPlayerPositions(playersHistory)}
           movePlayer={(itemType, row, col) => movePlayer(itemType, row, col)}
         />
         <Dashboard round={round} goal={setup.goal} bag={bag} />

@@ -28,6 +28,10 @@
   align-items: center;
 }
 
+.invis {
+  background-color: lightgray;
+}
+
 .player {
   position: absolute;
 }

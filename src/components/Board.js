@@ -16,19 +16,23 @@ export function Board({ board, playerPositions, movePlayer }) {
       for (let c = 0; c < numCols; c++) {
         const playerNum = playerPositions.findIndex(position => r === position[0] && c === position[1]);
         const maxAbsVal = arr => Math.max(...arr.map(Math.abs))
-        const playerAdj = playerPositions.map(
-          positions => maxAbsVal([positions[0] - r, positions[1] - c]) === 1
+        const moveAdj = playerPositions.map(
+          positions => Math.abs(positions[0] - r) + Math.abs(positions[1] - c) === 1
         ).reduce((acc, val, index) => val ? acc.concat([index + 1]) : acc, []);
+        const visionAdj = playerPositions.some(
+          positions => maxAbsVal([positions[0] - r, positions[1] - c]) <= 1
+        )
 
         cells.push(
           <Cell
             key={`${r} ${c}`}
             row={r} col={c}
             movePlayer={movePlayer}
-            dropTargets={playerAdj}
+            dropTargets={moveAdj}
+            visionAdj={visionAdj}
           >
-            {board[r][c] === 0 ? null : <Item type={board[r][c] - 1} />}
             {playerNum === -1 ? null : <Player number={playerNum + 1} />}
+            {board[r][c] === 0 ? null : <Item type={board[r][c] - 1} />}
           </Cell>
         );
       }

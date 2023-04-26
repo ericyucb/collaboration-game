@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Item({ type }) {
+export function Item({ type, display = 'center' }) {
   const colors = ['pink', 'red', 'blue'];
 
   return (
