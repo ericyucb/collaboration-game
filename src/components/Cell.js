@@ -3,7 +3,7 @@ import React from 'react';
 import { CellDropTarget } from './CellDropTarget';
 
 export function Cell({ row, col, movePlayer, dropTargets, visionAdj, children }) {
-  if (!visionAdj) {
+  if (!visionAdj && false) {
     return (
       <div className='cell invis' />
     )

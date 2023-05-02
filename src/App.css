@@ -26,6 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .invis {
@@ -36,16 +37,31 @@
   position: absolute;
 }
 
+.magazine {
+  display: flex;
+  position: absolute;
+}
+
+.corner {
+  top: 2px;
+  right: 2px;
+}
+
 .item {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  position: absolute;
+  margin: 2px;
+}
+
+.live-item:hover {
+  cursor: pointer;
+  filter: brightness(60%);
 }
 
 .target {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 40px;
   display: flex;
   justify-content: center;
@@ -107,6 +123,14 @@
   align-items: center;
 }
 
+.bag-title {
+  margin-bottom: 0px;
+}
+
+.capacity {
+  margin: 5px;
+}
+
 .listItem {
   margin: 5px 0px;
 }
@@ -133,6 +157,8 @@
   border-radius: 10px;
   padding: 20px 20px;
   margin: 0px 50px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 

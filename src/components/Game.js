@@ -8,10 +8,10 @@ export function Game({ setup }) {
   const [board, setBoard] = useState(setup.board);
   const [bag, setBag] = useState(setup.goal.map(() => 0));
   const [round, setRound] = useState(0);
+  const [collect, setCollect] = useState(null);
   const [playersHistory, setPlayersHistory] = useState(setup.playerPositions.map(position => [position.map(coord => coord)]));
 
   const getPlayerPositions = (playersHistory) => {
-    console.log(playersHistory);
     return playersHistory.map(playerHistory => playerHistory[playerHistory.length - 1])
   }
 
@@ -27,28 +27,39 @@ export function Game({ setup }) {
 
     setPlayersHistory(updatePlayersHistory);
     setRound(round => round + 1);
+    setCollect(() => null);
+  }
+
+  const selectItem = (item) => {
+    const total = bag.reduce((currSum, e) => currSum + e, 0);
+    if (total < setup.capacity) setCollect(() => item);
   }
 
   const collectItem = () => {
     const playerPositions = getPlayerPositions(playersHistory);
     const pRow = playerPositions[0][0];
     const pCol = playerPositions[0][1];
-    const currItem = board[pRow][pCol] - 1;
 
-    if (currItem !== -1) {
+    if (collect !== null) {
       const updateBoard = board => {
         const copyBoard = board.map(row => row.map(col => col));
-        copyBoard[pRow][pCol] = 0;
+        const itemIndex = copyBoard[pRow][pCol].indexOf(collect)
+        console.log(copyBoard[pRow][pCol]);
+        if (itemIndex !== -1) {
+          copyBoard[pRow][pCol].splice(itemIndex, 1);
+        }
+        console.log(copyBoard[pRow][pCol]);
         return copyBoard;
       }
       const updateBag = bag => {
         const copyBag = bag.filter(() => true);
-        copyBag[currItem] += 1;
+        copyBag[collect] += 1;
         return copyBag
       }
   
       setBoard(updateBoard);
       setBag(updateBag);
+      setCollect(() => null)
       setRound(round => round + 1);
     }
   }
@@ -61,10 +72,11 @@ export function Game({ setup }) {
           board={board}
           playerPositions={getPlayerPositions(playersHistory)}
           movePlayer={(itemType, row, col) => movePlayer(itemType, row, col)}
+          selectItem={selectItem}
         />
-        <Dashboard round={round} goal={setup.goal} bag={bag} />
+        <Dashboard round={round} goal={setup.goal} bag={bag} capacity={setup.capacity} />
       </div>
-      <Controls collectItem={collectItem}/>
+      <Controls collectItem={collectItem} displayItem={collect} />
     </div>
   )
 }

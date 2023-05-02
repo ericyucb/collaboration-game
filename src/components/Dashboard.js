@@ -1,7 +1,7 @@
 import React from 'react';
 
-export function Dashboard({ round, goal, bag }) {
-  const itemNames = ['pink', 'red', 'blue'];
+export function Dashboard({ round, goal, bag, capacity }) {
+  const itemNames = ['pink', 'red', 'blue', 'yellow', 'green'];
 
   const textColor = (i) =>{
     if (bag[i] >= goal[i]) {
@@ -18,7 +18,8 @@ export function Dashboard({ round, goal, bag }) {
         {itemNames.map((itemName, i) => (<p key={i} className={textColor(i)}>{`${goal[i]} ${itemNames[i]}`}</p>))}
       </div>
       <div className='bag'>
-        <h2><u>Bag</u></h2>
+        <h2 className='bag-title'><u>Bag</u></h2>
+        <h5 className='capacity'>Bag Capacity: {capacity}</h5>
         {itemNames.map((itemName, i) => (<p key={i} className='listItem'>{`${bag[i]} ${itemNames[i]}`}</p>))}
       </div>
     </div>
