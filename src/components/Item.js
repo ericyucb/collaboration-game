@@ -1,4 +1,5 @@
 import React from "react";
+import { COLORS } from "../settings";
 
 export function Magazine({ items, corner, live=false, selectItem=item=>{} }) {
   return (
@@ -9,11 +10,9 @@ export function Magazine({ items, corner, live=false, selectItem=item=>{} }) {
 }
 
 export function Item({ type, live=false, selectItem=item=>{} }) {
-  const colors = ['pink', 'red', 'blue', 'yellow', 'green'];
-
   return (
     live ?
-    <div className='item live-item' style={{backgroundColor: colors[type]}} onClick={() => selectItem(type)} /> :
-    <div className='item' style={{backgroundColor: colors[type]}} />
+    <div className='item live-item' style={{backgroundColor: COLORS[type]}} onClick={() => selectItem(type)} /> :
+    <div className='item' style={{backgroundColor: COLORS[type]}} />
   );
 }

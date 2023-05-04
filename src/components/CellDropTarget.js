@@ -16,11 +16,11 @@ export function CellDropTarget({ row, col, dropTargets, movePlayer, children }) 
 
   return (
     <div
-      className='cellDropTarget'
+      className='cell-drop-target'
       ref={drop}
     >
-      {canDrop && !isOver && <div className='highlightPossible' />}
-      {canDrop && isOver && <div className='highlightHover' />}
+      {canDrop && !isOver && <div className='highlight-possible' />}
+      {canDrop && isOver && <div className='highlight-hover' />}
       {children}
     </div>
   )
