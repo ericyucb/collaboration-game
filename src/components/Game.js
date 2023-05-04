@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import '../css/Game.css';
+
 import { Board } from './Board';
 import { Dashboard } from './Dashboard';
 import { Controls } from './Controls';
@@ -57,11 +59,9 @@ export function Game({ setup }) {
       const updateBoard = board => {
         const copyBoard = board.map(row => row.map(cell => cell.map(item => item)));
         const itemIndex = copyBoard[pRow][pCol].indexOf(nextCollect)
-        console.log(copyBoard[pRow][pCol]);
         if (itemIndex !== -1) {
           copyBoard[pRow][pCol].splice(itemIndex, 1);
         }
-        console.log(copyBoard[pRow][pCol]);
         return copyBoard;
       }
 

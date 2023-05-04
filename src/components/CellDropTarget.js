@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 
+import '../css/CellDropTarget.css';
+
 export function CellDropTarget({ row, col, dropTargets, movePlayer, children }) {
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({

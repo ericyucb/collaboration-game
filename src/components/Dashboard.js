@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { ITEM_NAMES } from '../settings';
+import '../css/Dashboard.css';
 
 export function Dashboard({ round, goal, bag, capacity, numDistinctItems, selectNextDropItem }) {
   const bagTotal = bag.reduce((currSum, num) => currSum + num, 0);

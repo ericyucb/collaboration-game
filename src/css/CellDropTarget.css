@@ -1,0 +1,23 @@
+.cell-drop-target {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlight-possible {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: rgb(211,211,211, 0.5);
+  position: absolute;
+}
+
+.highlight-hover {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: rgb(171, 255, 46, 0.5);
+  position: absolute;
+}

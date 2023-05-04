@@ -1,0 +1,13 @@
+.cell {
+  width: 100px;
+  height: 100px;
+  border: solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.invis {
+  background-color: lightgray;
+}

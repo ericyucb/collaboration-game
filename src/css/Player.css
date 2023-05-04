@@ -1,0 +1,17 @@
+.player {
+  position: absolute;
+}
+
+.target {
+  width: 70px;
+  height: 70px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.target:hover {
+  background-color: silver;
+}

@@ -1,5 +1,7 @@
 import React from "react";
+
 import { COLORS } from "../settings";
+import '../css/Item.css';
 
 export function Magazine({ items, corner, live=false, selectItem=item=>{} }) {
   return (
@@ -12,7 +14,7 @@ export function Magazine({ items, corner, live=false, selectItem=item=>{} }) {
 export function Item({ type, live=false, selectItem=item=>{} }) {
   return (
     live ?
-    <div className='item live-item' style={{backgroundColor: COLORS[type]}} onClick={() => selectItem(type)} /> :
+    <div className='item live' style={{backgroundColor: COLORS[type]}} onClick={() => selectItem(type)} /> :
     <div className='item' style={{backgroundColor: COLORS[type]}} />
   );
 }
