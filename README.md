@@ -1,70 +1,219 @@
-# Getting Started with Create React App
+# `maze-game`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is written in Javascript. It utilizes [ReactDnD](https://react-dnd.github.io/react-dnd/about) to add the drag and drop mechanic.
 
-## Available Scripts
+## Primary Scripts
 
 In the project directory, you can run:
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `npm run deploy`
 
-### `npm test`
+Builds the app for production, pushes it to the `gh-pages` branch, and deploys app to Github Pages.\
+Open [https://edwardneo.github.io/maze-game/](https://edwardneo.github.io/maze-game/) to view it in the browser.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## File structure
 
-### `npm run build`
+### `/App.js`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### `App`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*Renders the game using given setup*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `/App.css`
 
-### `npm run eject`
+*General page and button dynamics CSS*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `/settings.js`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Statics**
+- `ITEM_NAMES: string[]` | Array of item names
+- `COLORS: string[]` | Array of colors
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `/setups.js`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Statics**
+- `SETUPS: {goal, board, playerPosition, otherPlayers, capacity}[]` | Array of setups
+  - `goal: number[]` | Array of collected item goals, with the number at the nth index corresponding to the goal for item n
+  - `board: number[][][]` | 2D array representing the board, where each entry in the 2D board array is an array with numbers representing the items in that cell
+  - `playerPositions: number[][]` | Array of arrays of length two representing the coordinates where players are located
+  - `capacity: number` | Bag capacity
 
-## Learn More
+### `/components/Board.js`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### `Board`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*Represents board grid*
 
-### Code Splitting
+**Props**
+- `board: number[][][]` | 2D array representing the board, where each entry in the 2D board array is an array with numbers representing the items in that cell
+- `playerPositions: number[][]` | Array of length-two coordinate arrays where players are located
+- `movePlayer(itemType: string, row: number, col: number) -> void` | Callback function to move player
+- `selectNextCollectItem(item: number) -> void` | Callback function to select next collect item
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Functions**
+- `generateCells(numRows, numCols, playerPositions) -> JSX.Element[]` | Returns array of cells to render
 
-### Analyzing the Bundle Size
+### `/components/Cell.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### `Cell`
 
-### Making a Progressive Web App
+*Represents cell on board*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Props**
+- `row: number` | Row number of cell
+- `col: number` | Column number of cell
+- `movePlayer(itemType: string, row: number, col: number) -> void` | Callback function to move player
+- `dropTargets: number[]` | Player numbers of players move adjacent to cells for drop targets
+- `visionAdj: boolean` | Boolean indicating if cell is move adjacent
+- `children: ReactNode` | Children of `Cell` component
 
-### Advanced Configuration
+### `/components/CellDropTarget.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### `CellDropTarget`
 
-### Deployment
+*Represents drop targets that wrap around move adjacent cells*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Props**
+- `row: number` | Row number of cell
+- `col: number` | Column number of cell
+- `dropTargets: number[]` | Player numbers of players move adjacent to cells for drop targets
+- `movePlayer(itemType: string, row: number, col: number) -> void` | Callback function to move player
+- `children: ReactNode` | Children of `CellDropTarget` component
 
-### `npm run build` fails to minify
+### `/components/Controls.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Types and Interfaces**
+- `interface HandObject` | Interface representing a hand
+  - `[key: string]: number` | Key-value pair of how many cards the hand has for each color
+- `interface HandProps` | Props for `Hand`
+  - `hand: HandObject` | Current hand being displayed
+  - `maxHand: number` | Current max hand reached so far
+
+#### `Controls`
+
+*Has control buttons for collecting and dropping items and locking in action*
+
+**Props**
+- `collectItem() -> void` | Callback function to collect next collect item
+- `dropItem() -> void` | Callback function to drop next drop item
+- `displayCollectItem: number` | Next collect item to display
+- `displayDropItem: number` | Next drop item to display
+
+#### `ControlButton`
+
+*Represents control button that has optional display item and disabled mode*
+
+**Props**
+- `name: string` | Button action name
+- `onClick() -> void` | Callback function to call on click
+- `displayIcon: number` | Item to display
+
+### `/components/Dashboard.js`
+
+#### `Dashboard`
+
+*Has list of goals and current bag state*
+
+**Props**
+- `round: number` | Round number
+- `goal: number[]` | Array of collected item goals, with the number at the nth index corresponding to the goal for item n
+- `bag: number[]` | Array of items in bag, with the number at the nth index corresponding to the number of item n
+- `capacity: number` | Bag capacity
+- `numDistinctItems: number` | Number of distinct items on board
+- `selectNextDropItem(item: number) -> void` | Callback function to select next drop item
+
+**Functions**
+- `createBagListItem(itemName: string, i: number) -> JSX.Element` | Renders item in dashboard list
+
+### `/components/Game.js`
+
+#### `Game`
+
+*Has board, dashboard, and controls*
+
+**Props**
+- `setup: {goal, board, playerPosition, otherPlayers, capacity}` | Displayed setup
+
+**States**
+- `board: number[][][]` | 2D array representing the board, where each entry in the 2D board array is an array with numbers representing the items in that cell
+- `bag: number[]` | Array of number of each item in the player's bag
+- `round: number` | Current round number
+- `nextCollect: number | null` | Item queued for collection
+- `nextDrop: number | null` | Item queued for drop
+- `playersHistory: number[][][]` | Array of each player's movements, represented by an array of length-two coordinate arrays where the player has moved
+- 
+
+**Functions**
+- `getPlayerPositions(playersHistory: number[][][]) -> number[][]` | Returns array of length-two coordinate arrays where players are located
+- `movePlayer(itemType: number, row: number, col: number) -> void` | Move player and update state
+- `selectNextCollectItem(item: number) -> void` | Queue next collect item and update state
+- `selectDropCollectItem(item: number) -> void` | Queue drop collect item and update state
+- `collectItem() -> void` | Collect queued collect item and update state
+- `dropItem() -> void` | Drop queued drop item and update state
+
+### `/components/Item.js`
+
+#### `Magazine`
+
+*Represents magazine containing one or more items*
+
+**Props**
+- `items: number[]` | Array of items in magazine
+- `corner: boolean` | Boolean if the magazine will be in the corner of the cell
+- `live=false: boolean` | Boolean if items can be selected
+- `selectItem(item: number) -> void` | Callback function to select item
+
+#### `Item`
+
+*Represents item that can be clicked*
+
+**Props**
+- `type: number` | Index of item type in `COLORS` from `/settings.js`
+- `live=false: boolean` | Boolean if item can be selected
+- `selectItem(item: number) -> void` | Callback function to select item
+
+### `/components/Player.js`
+
+#### `Player`
+
+*Represents a player with drag target*
+
+**Props**
+- `number: number` | Player number
+
+### `/css/Board.css`
+
+*Board CSS*
+
+### `/css/Cell.css`
+
+*Cell CSS*
+
+### `/css/CellDropTarget.css`
+
+*Cell drop target and hover CSS*
+
+### `/css/Controls.css`
+
+*Controls and control button CSS*
+
+### `/css/Dashboard.css`
+
+*Dashboard, round, bag, capacity, and list CSS*
+
+### `/css/Game.css`
+
+*Game CSS*
+
+### `/css/Item.css`
+
+*Magazine, cornering, and item CSS*
+
+### `/css/Player.css`
+
+*Player and player drag target CSS*
