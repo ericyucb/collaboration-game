@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import '../css/Game.css';
 
-import { Board } from './Board';
-import { Dashboard } from './Dashboard';
-import { Controls } from './Controls';
+import { Board } from '../components/Board';
+import { Dashboard } from '../components/Dashboard';
+import { Controls } from '../components/Controls';
 
-export function Game({ setup }) {
+export function MazeGame({ setup }) {
   const [board, setBoard] = useState(setup.board);
   const [bag, setBag] = useState(setup.goal.map(() => 0));
   const [round, setRound] = useState(0);
