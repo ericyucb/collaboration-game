@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  usePlayer,
+  usePlayers,
+  useRound,
+  useStage,
+} from "@empirica/core/player/classic/react";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -8,7 +14,15 @@ import { Cell } from './Cell';
 import { Player } from './Player';
 import { Magazine } from './Item';
 
-export function Board({ board, playerPositions, movePlayer, selectNextCollectItem }) {
+export function Board(
+    // { playerPositions, movePlayer, selectNextCollectItem }
+  ) {
+  const players = usePlayers();
+  const round = useRound();
+  const board = round.get('board');
+  const playerPositions = players.map((player) => player.get('position'));
+
+
   const numRows = board.length;
   const numCols = board[0].length;
 
@@ -31,14 +45,14 @@ export function Board({ board, playerPositions, movePlayer, selectNextCollectIte
           <Cell
             key={`${r} ${c}`}
             row={r} col={c}
-            movePlayer={movePlayer}
+            movePlayer={(itemType, row, col) => {}}
             dropTargets={moveAdj}
             visionAdj={visionAdj}
           >
             {hasPlayer ? <Player number={playerNum + 1} /> : null}
             {board[r][c].length === 0 ?
               null :
-              <Magazine items={board[r][c]} corner={hasPlayer} live={hasPlayer} selectItem={selectNextCollectItem} />
+              <Magazine items={board[r][c]} corner={hasPlayer} live={hasPlayer} selectItem={(item) => {}} />
             }
           </Cell>
         );
