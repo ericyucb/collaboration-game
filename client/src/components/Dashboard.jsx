@@ -9,24 +9,22 @@ import {
 import { ITEM_NAMES } from '../settings';
 import '../css/Dashboard.css';
 
-export function Dashboard(
-    // { goal, bag, capacity, numDistinctItems, selectNextDropItem }
-  ) {
+export function Dashboard({ goal, capacity, bag, canMove }) {
+  const player = usePlayer();
   const round = useRound();
-  const goal = round.get('goal');
-  const bag = round.get('bag');
-  const capacity = round.get('capacity');
 
   const bagTotal = bag.reduce((currSum, num) => currSum + num, 0);
 
-  const createBagListItem = (itemName, i) => {
+  const createBagListItem = (itemName, item) => {
     let classes = 'list-item';
-    if (bag[i] >= goal[i]) classes += ' list-item-complete';
-    if (bag[i] !== 0) classes += ' can-drop';
+    if (bag[item] >= goal[item]) classes += ' list-item-complete';
+    if (bag[item] !== 0) classes += ' can-drop';
 
     return (
-      <p key={i} className={classes} onClick={() => bag[i] === 0 ? null : selectNextDropItem(i)}>
-        {`${bag[i]}/${goal[i]} ${itemName}`}
+      <p key={item} className={classes} onClick={() => 
+        canMove && bag[item] !== 0 ? player.stage.set('drop item', item) : null
+      }>
+        {`${bag[item]}/${goal[item]} ${itemName}`}
       </p>
     );
   }

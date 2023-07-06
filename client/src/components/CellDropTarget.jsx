@@ -1,13 +1,25 @@
 import React from 'react';
+import {
+  usePlayer,
+  usePlayers,
+  useRound,
+  useStage,
+} from "@empirica/core/player/classic/react";
 import { useDrop } from 'react-dnd';
 
 import '../css/CellDropTarget.css';
 
-export function CellDropTarget({ row, col, dropTargets, movePlayer, children }) {
+export function CellDropTarget({ row, col, children }) {
+  const player = usePlayer();
+
+  const movePlayer = () => {
+    player.stage.set('action', { 'type': 'move', 'position': [row, col] });
+  }
+
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({
-      accept: dropTargets.map(playerNum => `p${playerNum}`),
-      drop: (item, monitor) => movePlayer(monitor.getItemType(), row, col),
+      accept: 'player',
+      drop: movePlayer,
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
         canDrop: !!monitor.canDrop()

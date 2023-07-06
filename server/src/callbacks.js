@@ -10,7 +10,6 @@ Empirica.onGameStart(({ game }) => {
     board: setup.board,
     goal: setup.goal,
     capacity: setup.capacity,
-    bag: setup.goal.map(() => 0),
     numDistinctItems: setup.board.reduce(
         (currMax, row) => row.reduce(
           (rowMax, cell) => cell.reduce(
@@ -24,15 +23,24 @@ Empirica.onGameStart(({ game }) => {
     name: 'maze',
     duration: 10000,
   });
+});
 
-  game.players.forEach((player, index) => {
-    player.set('position', setup.playerPositions[index]);
+Empirica.onRoundStart(({ round }) => {
+  const setup = SETUPS[0];
+
+  round.currentGame.players.forEach((player, index) => {
+    player.round.set('position', setup.playerPositions[index]);
+    player.round.set('bag', setup.goal.map(() => 0));
   });
 });
 
-Empirica.onRoundStart(({ round }) => {});
-
-Empirica.onStageStart(({ stage }) => {});
+Empirica.onStageStart(({ stage }) => {
+  stage.currentGame.players.forEach(player => {
+    player.stage.set('action', null);
+    player.stage.set('collect item', null);
+    player.stage.set('drop item', null);
+  });
+});
 
 Empirica.onStageEnded(({ stage }) => {});
 

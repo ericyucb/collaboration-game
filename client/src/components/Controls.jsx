@@ -1,24 +1,63 @@
 import React from 'react';
+import {
+  usePlayer,
+  usePlayers,
+  useRound,
+  useStage,
+} from "@empirica/core/player/classic/react";
 
 import '../css/Controls.css';
 
 import { Item } from './Item';
 
-export function Controls({ collectItem, dropItem, displayCollectItem, displayDropItem }) {
+const live = 'hover:brightness-90 cursor-pointer';
+const disabled = 'opacity-30';
+
+export function Controls({ canMove }) {
+  const player = usePlayer();
+
+  const collectItem = player.stage.get('collect item');
+  const dropItem = player.stage.get('drop item');
+
+  const handleCollectItem = () => {
+    player.stage.set('action', { type: 'collect', item: collectItem });
+    player.stage.set('collect item', null);
+  }
+
+  const handleDropItem = () => {
+    player.stage.set('action', { type: 'drop', item: dropItem });
+    player.stage.set('drop item', null);
+  }
+  
+  const handleReset = () => {
+    player.stage.set('action', null);
+    player.stage.set('collect item', null);
+    player.stage.set('drop item', null);
+  }
+
   return (
     <div className='controls'>
-      <ControlButton name='Collect' onClick={collectItem} displayIcon={displayCollectItem} />
-      <ControlButton name='Drop' onClick={dropItem} displayIcon={displayDropItem} />
-      <ControlButton name='Lock In' onClick={() => {}} displayIcon={null} />
+      <ControlIconButton name='Collect' onClick={handleCollectItem} displayIcon={collectItem} />
+      <ControlIconButton name='Drop' onClick={handleDropItem} displayIcon={dropItem} />
+      <ControlButton name='Lock In' onClick={() => {}} isLive={!canMove} />
+      <ControlButton name='Reset' onClick={handleReset} isLive={!canMove} />
     </div>
   )
 }
 
-function ControlButton({ name, onClick, displayIcon }) {
+function ControlButton({ name, onClick, isLive=true }) {
+  return (
+    <div className={`control-button bg-blue-500 ${isLive ? live : disabled}`} onClick={isLive ? onClick : () => {}}>
+      <h3>{name}</h3>
+    </div>
+  );
+}
+
+function ControlIconButton({ name, onClick, displayIcon }) {
   const isLive = displayIcon !== null;
   
   return (
-    <div className={`control-button ${isLive ? 'live' : 'disabled'}`} onClick={isLive ? onClick : () => {}}>
+    <div className={`control-button bg-blue-500 ${isLive ? live : disabled}`} onClick={isLive ? onClick : () => {}}>
       <h3>{name}</h3>
       {displayIcon === null ? null : <Item type={displayIcon} />}
     </div>
