@@ -1,5 +1,6 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
 import SETUPS from "./setups";
+import { updateGame } from '../../Utils';
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.onGameStart(({ game }) => {
@@ -7,7 +8,7 @@ Empirica.onGameStart(({ game }) => {
 
   const round = game.addRound({
     name: `Round 1`,
-    board: setup.board,
+    board: setup.board, // Mutable
     goal: setup.goal,
     capacity: setup.capacity,
     numDistinctItems: setup.board.reduce(
@@ -19,10 +20,12 @@ Empirica.onGameStart(({ game }) => {
       -1) + 1,
   });
 
-  round.addStage({
-    name: 'maze',
-    duration: 10000,
-  });
+  for (let i = 0; i < 10; i++) {
+    round.addStage({
+      name: `maze`,
+      duration: 10000,
+    });
+  }
 });
 
 Empirica.onRoundStart(({ round }) => {
@@ -42,7 +45,20 @@ Empirica.onStageStart(({ stage }) => {
   });
 });
 
-Empirica.onStageEnded(({ stage }) => {});
+Empirica.onStageEnded(({ stage }) => {
+  let board = stage.round.get('board');
+  const players = stage.currentGame.players;
+  
+  players.forEach(player => {
+    const [ newBoard, playerPos, playerBag ] = updateGame(board, player.stage.get('action'), player);
+
+    board = newBoard;
+    player.round.set('position', playerPos);
+    player.round.set('bag', playerBag);
+  });
+
+  stage.round.set('board', board);
+});
 
 Empirica.onRoundEnded(({ round }) => {});
 

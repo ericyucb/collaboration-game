@@ -39,7 +39,7 @@ export function Controls({ canMove }) {
     <div className='controls'>
       <ControlIconButton name='Collect' onClick={handleCollectItem} displayIcon={collectItem} />
       <ControlIconButton name='Drop' onClick={handleDropItem} displayIcon={dropItem} />
-      <ControlButton name='Lock In' onClick={() => {}} isLive={!canMove} />
+      <ControlButton name='Lock In' onClick={() => player.stage.set("submit", true)} isLive={!canMove} />
       <ControlButton name='Reset' onClick={handleReset} isLive={!canMove} />
     </div>
   )

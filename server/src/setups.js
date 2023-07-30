@@ -10,7 +10,7 @@ export default
       [[0], [0], [0], [ ], [ ], [1]],
       [[ ], [0], [0], [2], [1], [1]],
     ],
-    playerPositions: [[5, 0], [0, 5]],
+    playerPositions: [[5, 1], [0, 5]],
     capacity: 10,
   },
   {

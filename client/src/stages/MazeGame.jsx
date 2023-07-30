@@ -11,7 +11,7 @@ import '../css/Game.css';
 import { Board } from '../components/Board';
 import { Dashboard } from '../components/Dashboard';
 import { Controls } from '../components/Controls';
-import { updateGame } from '../utils/Utils';
+import { updateGame } from '../../../Utils';
 
 export function MazeGame() {
   const round = useRound();
@@ -26,6 +26,7 @@ export function MazeGame() {
   const canMove = action === null;
 
   const [ nextBoard, nextPlayerPos, nextPlayerBag ] = updateGame(round.get('board'), action, player);
+  console.log(round.get('board'));
 
   return (
     <div className='game'>

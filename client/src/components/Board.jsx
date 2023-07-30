@@ -7,7 +7,7 @@ import '../css/Board.css';
 import { Cell } from './Cell';
 import { Player } from './Player';
 import { Magazine } from './Item';
-import { samePos, adjPos, surroundPos } from '../utils/Utils';
+import { samePos, adjPos, surroundPos } from '../../../Utils';
 
 export function Board({ board, playerPos, playerId, otherPos, otherId, vision, canMove }) {
   const numRows = board.length;

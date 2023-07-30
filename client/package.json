@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@empirica/core": "1.4.1",
+    "@empirica/core": "1.4.2",
     "esbuild": "0.17.15",
     "react": "18.2.0",
     "react-dnd": "^16.0.1",

@@ -7,7 +7,6 @@ import {
 import { Loading } from "@empirica/core/player/react";
 import React from "react";
 
-import SETUPS from './setups';
 import { MazeGame } from './stages/MazeGame'
 
 export function Stage() {
@@ -30,6 +29,6 @@ export function Stage() {
 
   switch (stage.get('name')) {
     case 'maze':
-      return <MazeGame setup={SETUPS[0]} />
+      return <MazeGame />
   }
 }
