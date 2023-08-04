@@ -18,7 +18,7 @@ export function MazeGame() {
   const player = usePlayer();
   const players = usePlayers();
 
-  const otherPlayer = players.filter(p => p.id !== player.id)[0];
+  const otherPlayer = players.length === 2 ? players.filter(p => p.id !== player.id)[0] : null;
 
   const action = player.stage.get('action');
   const capacity = round.get('capacity');
@@ -35,8 +35,8 @@ export function MazeGame() {
           board={nextBoard}
           playerPos={nextPlayerPos}
           playerId={player.id}
-          otherPos={otherPlayer.round.get('position')}
-          otherId={otherPlayer.id}
+          otherPos={otherPlayer ? otherPlayer.round.get('position') : null}
+          otherId={otherPlayer ? otherPlayer.id : null}
           vision={player.round.get('position')}
           canMove={canMove}
         />

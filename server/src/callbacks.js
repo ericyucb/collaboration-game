@@ -1,10 +1,10 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
-import SETUPS from "./setups";
+import { OnePlayerSetups, TwoPlayerSetups } from "./setups";
 import { updateGame } from '../../Utils';
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.onGameStart(({ game }) => {
-  const setup = SETUPS[0];
+  const setup = game.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
 
   const round = game.addRound({
     name: `Round 1`,
@@ -29,7 +29,7 @@ Empirica.onGameStart(({ game }) => {
 });
 
 Empirica.onRoundStart(({ round }) => {
-  const setup = SETUPS[0];
+  const setup = round.currentGame.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
 
   round.currentGame.players.forEach((player, index) => {
     player.round.set('position', setup.playerPositions[index]);

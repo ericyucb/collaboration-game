@@ -1,13 +1,13 @@
 export function samePos(pos1, pos2) {
-  return pos1[0] === pos2[0] && pos1[1] === pos2[1];
+  return pos1 && pos2 && pos1[0] === pos2[0] && pos1[1] === pos2[1];
 }
 
 export function adjPos(pos1, pos2) {
-  return Math.abs(pos1[0] - pos2[0]) + Math.abs(pos1[1] - pos2[1]) === 1;
+  return pos1 && pos2 && Math.abs(pos1[0] - pos2[0]) + Math.abs(pos1[1] - pos2[1]) === 1;
 }
 
 export function surroundPos(pos1, pos2) {
-  return Math.abs(pos1[0] - pos2[0]) <= 1 && Math.abs(pos1[1] - pos2[1]) <= 1
+  return pos1 && pos2 && Math.abs(pos1[0] - pos2[0]) <= 1 && Math.abs(pos1[1] - pos2[1]) <= 1
 }
 
 export function updateGame(board, action, player) {

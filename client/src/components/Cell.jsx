@@ -4,8 +4,8 @@ import '../css/Cell.css';
 
 import { CellDropTarget } from './CellDropTarget';
 
-export function Cell({ row, col, movePlayer, dropTargets, moveAdj, visionAdj, children }) {
-  if (!visionAdj && false) {
+export function Cell({ row, col, movePlayer, moveAdj, visionAdj, children }) {
+  if (!visionAdj && false) { // Remove false condition once done debugging
     return (
       <div className='cell invis' />
     )
