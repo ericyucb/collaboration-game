@@ -10,6 +10,10 @@ export function surroundPos(pos1, pos2) {
   return pos1 && pos2 && Math.abs(pos1[0] - pos2[0]) <= 1 && Math.abs(pos1[1] - pos2[1]) <= 1
 }
 
+export function goalFulfilled(bag, goal) {
+  return bag.every((itemNum, index) => itemNum >= goal[index]);
+}
+
 export function updateGame(board, action, player) {
   const pos = player.round.get('position');
   const bag = player.round.get('bag');

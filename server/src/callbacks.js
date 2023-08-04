@@ -1,10 +1,10 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
 import { OnePlayerSetups, TwoPlayerSetups } from "./setups";
-import { updateGame } from '../../Utils';
+import { updateGame, goalFulfilled } from '../../Utils';
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.onGameStart(({ game }) => {
-  const setup = game.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
+  const setup = game.players.length === 1 ? OnePlayerSetups[2] : TwoPlayerSetups[2];
 
   const round = game.addRound({
     name: `Round 1`,
@@ -18,6 +18,7 @@ Empirica.onGameStart(({ game }) => {
           rowMax),
         currMax),
       -1) + 1,
+    completed: false, // Mutable
   });
 
   for (let i = 0; i < 10; i++) {
@@ -29,7 +30,7 @@ Empirica.onGameStart(({ game }) => {
 });
 
 Empirica.onRoundStart(({ round }) => {
-  const setup = round.currentGame.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
+  const setup = round.currentGame.players.length === 1 ? OnePlayerSetups[2] : TwoPlayerSetups[2];
 
   round.currentGame.players.forEach((player, index) => {
     player.round.set('position', setup.playerPositions[index]);
@@ -47,11 +48,18 @@ Empirica.onStageStart(({ stage }) => {
     player.stage.set('collect item', null);
     player.stage.set('drop item', null);
   });
+
+  if (stage.round.get('completed')) {
+    stage.currentGame.players.forEach(player => {
+      player.stage.set('submit', true);
+    })
+  }
 });
 
 Empirica.onStageEnded(({ stage }) => {
   let board = stage.round.get('board');
   const players = stage.currentGame.players;
+  const playerBags = [];
   
   players.forEach(player => {
     const [ newBoard, playerPos, playerBag ] = updateGame(board, player.stage.get('action'), player);
@@ -59,9 +67,26 @@ Empirica.onStageEnded(({ stage }) => {
     board = newBoard;
     player.round.set('position', playerPos);
     player.round.set('bag', playerBag);
+
+    playerBags.push(playerBag);
   });
 
   stage.round.set('board', board);
+
+  if (players.length === 1) {
+    if (goalFulfilled(playerBags[0], stage.round.get('goal'))) {
+      stage.round.set('completed', true);
+      console.log('completed');
+    }
+  } else {
+    const collectiveBag = playerBags[0].map((itemNum, index) => itemNum + playerBags[1][index]);
+    if (goalFulfilled(playerBags[0], players[0].round.get('individual goal')) &&
+    goalFulfilled(playerBags[1], players[1].round.get('individual goal')) &&
+    goalFulfilled(collectiveBag, stage.round.get('goal'))) {
+      stage.round.set('completed', true);
+      console.log('completed');
+    }
+  }
 });
 
 Empirica.onRoundEnded(({ round }) => {});

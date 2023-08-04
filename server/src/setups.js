@@ -10,7 +10,7 @@ export const OnePlayerSetups =
       [[0], [0], [0], [ ], [ ], [1]],
       [[ ], [0], [0], [2], [1], [1]],
     ],
-    playerPositions: [[5, 1]],
+    playerPositions: [[5, 0]],
     capacity: 10,
   },
   {
@@ -25,7 +25,20 @@ export const OnePlayerSetups =
     ],
     playerPositions: [[5, 1]],
     capacity: 1,
-  }
+  },
+  {
+    goal: [1, 0, 0],
+    board: [
+      [[1], [ ], [2], [0], [0], [ ]],
+      [[1], [2], [ ], [0], [0], [0]],
+      [[2], [ ], [2], [0], [0], [0]],
+      [[0], [0], [0], [2], [ ], [2]],
+      [[0], [0], [0], [ ], [ ], [1]],
+      [[ ], [0], [0], [2], [1], [1]],
+    ],
+    playerPositions: [[5, 1]],
+    capacity: 10,
+  },
 ]
 
 export const TwoPlayerSetups =
@@ -46,7 +59,7 @@ export const TwoPlayerSetups =
   },
   {
     goal: [7, 3, 5, 0, 0],
-    individualGoals: [[1, 2, 3], [2, 3, 4]],
+    individualGoals: [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]],
     board: [
       [[1, 2, 3, 4], [ ], [2], [0], [0], [ ]],
       [[1], [2], [ ], [0], [0], [0]],
@@ -57,5 +70,19 @@ export const TwoPlayerSetups =
     ],
     playerPositions: [[5, 1], [1, 5]],
     capacity: 1,
-  }
+  },
+  {
+    goal: [2, 0, 0],
+    individualGoals: [[2, 0, 0], [1, 0, 0]],
+    board: [
+      [[1], [ ], [2], [0], [0], [ ]],
+      [[1], [2], [ ], [0], [0], [0]],
+      [[2], [ ], [2], [0], [0], [0]],
+      [[0], [0], [0], [2], [ ], [2]],
+      [[0], [0], [0], [ ], [ ], [1]],
+      [[ ], [0], [0], [2], [1], [1]],
+    ],
+    playerPositions: [[5, 0], [0, 5]],
+    capacity: 10,
+  },
 ]
