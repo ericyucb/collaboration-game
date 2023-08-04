@@ -34,6 +34,10 @@ Empirica.onRoundStart(({ round }) => {
   round.currentGame.players.forEach((player, index) => {
     player.round.set('position', setup.playerPositions[index]);
     player.round.set('bag', setup.goal.map(() => 0));
+
+    if (round.currentGame.players.length === 2) {
+      player.round.set('individual goal', setup.individualGoals[index]);
+    }
   });
 });
 

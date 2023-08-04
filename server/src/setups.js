@@ -32,6 +32,7 @@ export const TwoPlayerSetups =
 [
   {
     goal: [7, 3, 5],
+    individualGoals: [[1, 2, 3], [2, 3, 4]],
     board: [
       [[1], [ ], [2], [0], [0], [ ]],
       [[1], [2], [ ], [0], [0], [0]],
@@ -45,6 +46,7 @@ export const TwoPlayerSetups =
   },
   {
     goal: [7, 3, 5, 0, 0],
+    individualGoals: [[1, 2, 3], [2, 3, 4]],
     board: [
       [[1, 2, 3, 4], [ ], [2], [0], [0], [ ]],
       [[1], [2], [ ], [0], [0], [0]],

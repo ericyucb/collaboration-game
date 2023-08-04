@@ -21,12 +21,13 @@ export function MazeGame() {
   const otherPlayer = players.length === 2 ? players.filter(p => p.id !== player.id)[0] : null;
 
   const action = player.stage.get('action');
-  const capacity = round.get('capacity');
 
   const canMove = action === null;
 
   const [ nextBoard, nextPlayerPos, nextPlayerBag ] = updateGame(round.get('board'), action, player);
   console.log(round.get('board'));
+
+  const collectiveBag = players.length === 2 ? otherPlayer.round.get('bag').map((numItem, index) => numItem + nextPlayerBag[index]) : null;
 
   return (
     <div className='game'>
@@ -42,8 +43,10 @@ export function MazeGame() {
         />
         <Dashboard
           goal={round.get('goal')}
+          individualGoal={otherPlayer ? player.round.get('individual goal') : null}
           capacity={round.get('capacity')}
           bag={nextPlayerBag}
+          collectiveBag={collectiveBag}
           canMove={canMove}
         />
       </div>
