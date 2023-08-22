@@ -18,15 +18,19 @@ Empirica.onGameStart(({ game }) => {
           rowMax),
         currMax),
       -1) + 1,
-    completed: false, // Mutable
   });
 
-  for (let i = 0; i < 10; i++) {
-    round.addStage({
-      name: `maze`,
-      duration: 10000,
-    });
-  }
+  round.addStage({
+    name: `maze`,
+    duration: 10000,
+  });
+
+  // for (let i = 0; i < 10; i++) {
+  //   round.addStage({
+  //     name: `maze`,
+  //     duration: 10000,
+  //   });
+  // }
 });
 
 Empirica.onRoundStart(({ round }) => {
@@ -74,17 +78,22 @@ Empirica.onStageEnded(({ stage }) => {
   stage.round.set('board', board);
 
   if (players.length === 1) {
-    if (goalFulfilled(playerBags[0], stage.round.get('goal'))) {
-      stage.round.set('completed', true);
-      console.log('completed');
+    if (!goalFulfilled(playerBags[0], stage.round.get('goal'))) {
+      stage.round.addStage({
+        name: `maze`,
+        duration: 10000,
+      });
     }
   } else {
     const collectiveBag = playerBags[0].map((itemNum, index) => itemNum + playerBags[1][index]);
-    if (goalFulfilled(playerBags[0], players[0].round.get('individual goal')) &&
-    goalFulfilled(playerBags[1], players[1].round.get('individual goal')) &&
-    goalFulfilled(collectiveBag, stage.round.get('goal'))) {
-      stage.round.set('completed', true);
-      console.log('completed');
+    if (!(goalFulfilled(playerBags[0], players[0].round.get('individual goal')) &&
+      goalFulfilled(playerBags[1], players[1].round.get('individual goal')) &&
+      goalFulfilled(collectiveBag, stage.round.get('goal'))))
+    {
+      stage.round.addStage({
+        name: `maze`,
+        duration: 10000,
+      });
     }
   }
 });
