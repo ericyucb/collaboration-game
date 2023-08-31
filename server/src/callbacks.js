@@ -39,6 +39,7 @@ Empirica.onRoundStart(({ round }) => {
   round.currentGame.players.forEach((player, index) => {
     player.round.set('position', setup.playerPositions[index]);
     player.round.set('bag', setup.goal.map(() => 0));
+    player.round.set('score', 0);
 
     if (round.currentGame.players.length === 2) {
       player.round.set('individual goal', setup.individualGoals[index]);
@@ -71,6 +72,7 @@ Empirica.onStageEnded(({ stage }) => {
     board = newBoard;
     player.round.set('position', playerPos);
     player.round.set('bag', playerBag);
+    player.round.set('score', player.round.get('score') + 1);
 
     playerBags.push(playerBag);
   });

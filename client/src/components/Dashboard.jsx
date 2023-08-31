@@ -14,7 +14,6 @@ export function Dashboard({ goal, individualGoal, capacity, bag, collectiveBag, 
 
   return (
     <div className='dashboard'>
-      
       <div className='bag'>
         <h2 className='bag-title'><u>Bag</u></h2>
         <h5 className='capacity'>Bag Total: <span style={bagTotal === capacity ? {color: 'red'} : {}}>{bagTotal}/{capacity}</span></h5>
