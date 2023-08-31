@@ -14,6 +14,7 @@ export function Dashboard({ goal, individualGoal, capacity, bag, collectiveBag, 
 
   return (
     <div className='dashboard'>
+      
       <div className='bag'>
         <h2 className='bag-title'><u>Bag</u></h2>
         <h5 className='capacity'>Bag Total: <span style={bagTotal === capacity ? {color: 'red'} : {}}>{bagTotal}/{capacity}</span></h5>
@@ -27,6 +28,13 @@ export function Dashboard({ goal, individualGoal, capacity, bag, collectiveBag, 
               canMove={canMove}
             />
             <h3><u>Shared Goal</u></h3>
+            <BagList
+              bag={collectiveBag}
+              goal={goal}
+              canMove={false}
+              showProgress={false}
+            />
+            <h3><u>Shared Goal (Admin)</u></h3>
             <BagList
               bag={collectiveBag}
               goal={goal}
@@ -47,7 +55,7 @@ export function Dashboard({ goal, individualGoal, capacity, bag, collectiveBag, 
   )
 }
 
-function BagList({ bag, goal, canMove}) {
+function BagList({ bag, goal, canMove, showProgress=true }) {
   const player = usePlayer();
   const round = useRound();
 
@@ -60,7 +68,11 @@ function BagList({ bag, goal, canMove}) {
       <p key={item} className={classes} onClick={() => 
         canMove && bag[item] !== 0 ? player.stage.set('drop item', item) : null
       }>
-        {`${bag[item]}/${goal[item]} ${itemName}`}
+        {
+          showProgress ?
+          `${bag[item]}/${goal[item]} ${itemName}` :
+          `${goal[item]} ${itemName}`
+        }
       </p>
     );
   }
