@@ -31,8 +31,13 @@
   margin: 5px 0px;
 }
 
+.list-item-incomplete {
+  color: red;
+}
+
 .list-item-complete {
   text-decoration: line-through;
+  color: green;
 }
 
 .can-drop:hover {

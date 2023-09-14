@@ -1,30 +1,27 @@
-import React from "react";
+import React from 'react'
 
-import { COLORS } from "../settings";
-import '../css/Item.css';
+import { COLORS } from '../settings'
+import '../css/Item.css'
 import {
-  usePlayer,
-  usePlayers,
-  useRound,
-  useStage,
-} from "@empirica/core/player/classic/react";
+	usePlayer,
+} from '@empirica/core/player/classic/react'
 
-const live = 'hover:brightness-90 cursor-pointer';
+const live = 'hover:brightness-90 cursor-pointer'
 
 export function Magazine({ items, corner, isLive }) {
-  return (
-    <div className={`magazine${corner ? ' corner' : ''}`}>
-      {items.length === 0 ? null : items.map((item, index) => <Item key={index} type={item} isLive={isLive} />)}
-    </div>
-  )
+	return (
+		<div className={`magazine${corner ? ' corner' : ''}`}>
+			{items.length === 0 ? null : items.map((item, index) => <Item key={index} type={item} isLive={isLive} />)}
+		</div>
+	)
 }
 
 export function Item({ type, isLive }) {
-  const player = usePlayer();
+	const player = usePlayer()
 
-  return (
-    isLive ?
-    <div className={`item ${live}`} style={{backgroundColor: COLORS[type]}} onClick={() => player.stage.set('collect item', type)} /> :
-    <div className='item' style={{backgroundColor: COLORS[type]}} />
-  );
+	return (
+		isLive ?
+			<div className={`item ${live}`} style={{backgroundColor: COLORS[type]}} onClick={() => player.stage.set('collect item', type)} /> :
+			<div className='item' style={{backgroundColor: COLORS[type]}} />
+	)
 }

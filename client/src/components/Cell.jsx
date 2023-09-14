@@ -1,27 +1,27 @@
-import React from 'react';
+import React from 'react'
 
-import '../css/Cell.css';
+import '../css/Cell.css'
 
-import { CellDropTarget } from './CellDropTarget';
+import { CellDropTarget } from './CellDropTarget'
 
 export function Cell({ row, col, movePlayer, moveAdj, visionAdj, children }) {
-  if (!visionAdj && false) { // Remove false condition once done debugging
-    return (
-      <div className='cell invis' />
-    )
-  }
+	if (!visionAdj) { // Remove false condition once done debugging
+		return (
+			<div className='cell invis' />
+		)
+	}
 
-  return (
-    moveAdj ?
-    <CellDropTarget row={row} col={col} movePlayer={movePlayer}>
-      <div className='cell'>
-        {children}
-      </div>
-    </CellDropTarget> :
-    <div
-      className='cell'
-    >
-      {children}
-    </div>
-  );
+	return (
+		moveAdj ?
+			<CellDropTarget row={row} col={col} movePlayer={movePlayer}>
+				<div className='cell'>
+					{children}
+				</div>
+			</CellDropTarget> :
+			<div
+				className='cell'
+			>
+				{children}
+			</div>
+	)
 }
