@@ -1,9 +1,0 @@
-name = "maze-game"
-
-[tajriba.auth]
-srtoken = "JqNxpYbscSmarHIK"
-
-[[tajriba.auth.users]]
-name = "Admin"
-username = "admin"
-password = "qAqeMnNw"
