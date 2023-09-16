@@ -1,4 +1,4 @@
-# `maze-game`
+# `collaboration-game`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is written in Javascript. It utilizes [ReactDnD](https://react-dnd.github.io/react-dnd/about) to add the drag and drop mechanic and [Empirica](https://empirica.ly/) to handle server calls and data storage.
 
