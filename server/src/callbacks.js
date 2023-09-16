@@ -4,7 +4,7 @@ import { updateGame, goalFulfilled } from '../../Utils';
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.onGameStart(({ game }) => {
-  const setup = game.players.length === 1 ? OnePlayerSetups[2] : TwoPlayerSetups[2];
+  const setup = game.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
 
   const round = game.addRound({
     name: `Round 1`,
@@ -24,17 +24,10 @@ Empirica.onGameStart(({ game }) => {
     name: `maze`,
     duration: 10000,
   });
-
-  // for (let i = 0; i < 10; i++) {
-  //   round.addStage({
-  //     name: `maze`,
-  //     duration: 10000,
-  //   });
-  // }
 });
 
 Empirica.onRoundStart(({ round }) => {
-  const setup = round.currentGame.players.length === 1 ? OnePlayerSetups[2] : TwoPlayerSetups[2];
+  const setup = round.currentGame.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
 
   round.currentGame.players.forEach((player, index) => {
     player.round.set('position', setup.playerPositions[index]);
