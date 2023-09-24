@@ -1,2 +1,2 @@
-export const ITEM_NAMES = ['pink', 'red', 'blue', 'yellow', 'green']
-export const COLORS = ['pink', 'red', 'blue', 'yellow', 'green']
+export const ITEM_NAMES = ['red', 'blue', 'green', 'pink']
+export const COLORS = ['red', 'blue', 'green', 'pink']
