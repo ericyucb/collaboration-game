@@ -5,13 +5,11 @@ export const Empirica = new ClassicListenersCollector();
 
 Empirica.onGameStart(({ game }) => {
   let setups = game.players.length === 1 ? OnePlayerSetups : TwoPlayerSetups;
-  console.log(setups);
 
   setups = setups
-    .map((setup, index) => ({ setup, sort: Math.random(), setupIndex: index}))
+    .map((setup, index) => ({ setup, setupIndex: index, sort: Math.random()}))
     .sort((a, b) => a.sort - b.sort)
     .map(({ setup, setupIndex }) => ({ setup, setupIndex }));
-  console.log(setups);
 
   game.set('setups', setups);
 
@@ -37,7 +35,7 @@ Empirica.onGameStart(({ game }) => {
       });
   
       round.addStage({
-        name: `maze`,
+        name: 'Maze Game',
         duration: 10000,
       });
     }
@@ -59,20 +57,20 @@ Empirica.onRoundStart(({ round }) => {
 });
 
 Empirica.onStageStart(({ stage }) => {
-  stage.currentGame.players.forEach(player => {
-    player.stage.set('action', null);
-    player.stage.set('collect item', null);
-    player.stage.set('drop item', null);
-  });
-
-  if (stage.round.get('completed')) {
+  if (stage.get('name') === 'Maze Game') {
     stage.currentGame.players.forEach(player => {
-      player.stage.set('submit', true);
-    })
+      player.stage.set('action', null);
+      player.stage.set('collect item', null);
+      player.stage.set('drop item', null);
+    });
   }
 });
 
 Empirica.onStageEnded(({ stage }) => {
+  if (stage.round.get('completed')) {
+    return;
+  }
+
   let board = stage.round.get('board');
   const players = stage.currentGame.players;
   const playerBags = [];
@@ -90,24 +88,22 @@ Empirica.onStageEnded(({ stage }) => {
 
   stage.round.set('board', board);
 
-  if (players.length === 1) {
-    if (!goalFulfilled(playerBags[0], stage.round.get('goal'))) {
-      stage.round.addStage({
-        name: `maze`,
-        duration: 10000,
-      });
-    }
+  let goalsFullfilled = (players.length === 1 && goalFulfilled(playerBags[0], stage.round.get('goal')))
+    || (players.length === 2 && goalFulfilled(playerBags[0], players[0].round.get('individual goal')) &&
+    goalFulfilled(playerBags[1], players[1].round.get('individual goal')) &&
+    goalFulfilled(collectiveBag, stage.round.get('goal')))
+
+  if (goalsFullfilled) {
+    stage.round.set('completed', true)
+    stage.round.addStage({
+      name: `Maze Game End`,
+      duration: 10000,
+    });
   } else {
-    const collectiveBag = playerBags[0].map((itemNum, index) => itemNum + playerBags[1][index]);
-    if (!(goalFulfilled(playerBags[0], players[0].round.get('individual goal')) &&
-      goalFulfilled(playerBags[1], players[1].round.get('individual goal')) &&
-      goalFulfilled(collectiveBag, stage.round.get('goal'))))
-    {
-      stage.round.addStage({
-        name: `maze`,
-        duration: 10000,
-      });
-    }
+    stage.round.addStage({
+      name: `Maze Game`,
+      duration: 10000,
+    });
   }
 });
 

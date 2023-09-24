@@ -46,7 +46,6 @@ function BagList({ bag, collectiveBag=null, individualGoal, sharedGoal=null, can
 	const round = useRound()
 
 	const createBagListItem = (itemName, item) => {
-		console.log(individualGoal, item)
 		return (
 			<p
 				key={item}

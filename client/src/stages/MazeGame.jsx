@@ -24,7 +24,6 @@ export function MazeGame() {
 	const canMove = action === null
 
 	const [ nextBoard, nextPlayerPos, nextPlayerBag ] = updateGame(round.get('board'), action, player)
-	console.log(round.get('board'))
 
 	const collectiveBag = players.length === 2 ? otherPlayer.round.get('bag').map((numItem, index) => numItem + nextPlayerBag[index]) : null
 
