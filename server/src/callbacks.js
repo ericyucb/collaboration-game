@@ -1,33 +1,51 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
-import { OnePlayerSetups, TwoPlayerSetups } from "./setups";
+import { OnePlayerSetups, TwoPlayerSetups, Iterations } from "./setups";
 import { updateGame, goalFulfilled } from '../../Utils';
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.onGameStart(({ game }) => {
-  const setup = game.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
+  let setups = game.players.length === 1 ? OnePlayerSetups : TwoPlayerSetups;
+  console.log(setups);
 
-  const round = game.addRound({
-    name: `Round 1`,
-    board: setup.board, // Mutable
-    goal: setup.goal,
-    capacity: setup.capacity,
-    numDistinctItems: setup.board.reduce(
-        (currMax, row) => row.reduce(
-          (rowMax, cell) => cell.reduce(
-            (cellMax, item) => Math.max(cellMax, item),
-          rowMax),
-        currMax),
-      -1) + 1,
-  });
+  setups = setups
+    .map((setup, index) => ({ setup, sort: Math.random(), setupIndex: index}))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ setup, setupIndex }) => ({ setup, setupIndex }));
+  console.log(setups);
 
-  round.addStage({
-    name: `maze`,
-    duration: 10000,
+  game.set('setups', setups);
+
+  setups.forEach((setup, index) => {
+    let setupIndex = setup.setupIndex;
+    setup = setup.setup;
+
+    for (let i = 0; i < Iterations; i++) {
+      const round = game.addRound({
+        name: `Setup ${index * Iterations + i}`,
+        setup: setup,
+        setupIndex: setupIndex,
+        board: setup.board, // Mutable
+        goal: setup.goal,
+        capacity: setup.capacity,
+        numDistinctItems: setup.board.reduce(
+            (currMax, row) => row.reduce(
+              (rowMax, cell) => cell.reduce(
+                (cellMax, item) => Math.max(cellMax, item),
+              rowMax),
+            currMax),
+          -1) + 1,
+      });
+  
+      round.addStage({
+        name: `maze`,
+        duration: 10000,
+      });
+    }
   });
 });
 
 Empirica.onRoundStart(({ round }) => {
-  const setup = round.currentGame.players.length === 1 ? OnePlayerSetups[0] : TwoPlayerSetups[0];
+  const setup = round.get('setup');
 
   round.currentGame.players.forEach((player, index) => {
     player.round.set('position', setup.playerPositions[index]);

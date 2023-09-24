@@ -25,7 +25,7 @@ export const OnePlayerSetups = [
     playerPositions: [[4, 2]],
     capacity: 10,
   },
-]
+];
 
 export const TwoPlayerSetups = [
   {
@@ -42,7 +42,7 @@ export const TwoPlayerSetups = [
     playerPositions: [[5, 0], [0, 5]],
     capacity: 10,
   },
-]
+];
 
 export const OnePlayerTestSetups = [
   {
@@ -84,7 +84,7 @@ export const OnePlayerTestSetups = [
     playerPositions: [[5, 1]],
     capacity: 10,
   },
-]
+];
 
 export const TwoPlayerTestSetups = [
   {
@@ -129,4 +129,6 @@ export const TwoPlayerTestSetups = [
     playerPositions: [[5, 0], [0, 5]],
     capacity: 10,
   },
-]
+];
+
+export const Iterations = 2;
