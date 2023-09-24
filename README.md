@@ -19,10 +19,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser, a
 
 In `client/`, you can run:
 
-### `npm eslint`
+### `npm run eslint`
 
 Lints all `.js`, `.jsx`, and `.ts` files in `client/`.
 
-### `npm eslint-fix`
+### `npm run eslint-fix`
 
 Lints and tries to fix all `.js`, `.jsx`, and `.ts` files in `client/`.
