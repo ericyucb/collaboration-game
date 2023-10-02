@@ -65,10 +65,9 @@ Empirica.onRoundStart(({ round }) => {
 
 Empirica.onStageStart(({ stage }) => {
   console.log('Starting action');
-  console.log(`DEBUG: At the start of action, player 0's bag is ${stage.currentGame.players[0].round.get('bag')}`);
   if (stage.get('name') === 'Maze Game') {
     stage.currentGame.players.forEach(player => {
-      if (player.stage !== undefined) {
+      if (player.stage !== undefined) { // For weird Heisenbug player.stage not being defined
         player.stage.set('action', null);
         player.stage.set('collect item', null);
         player.stage.set('drop item', null);
@@ -88,7 +87,6 @@ Empirica.onStageEnded(({ stage }) => {
   
   players.forEach(player => {
     const [ newBoard, playerPos, playerBag ] = updateGame(board, player.stage.get('action'), player);
-    console.log(`Setting bag to ${playerBag}`);
 
     board = newBoard;
     player.round.set('position', playerPos);
@@ -119,7 +117,6 @@ Empirica.onStageEnded(({ stage }) => {
     });
     console.log('Goals unfulfilled')
   }
-  console.log(`DEBUG: At the end of action, player 0's bag is ${players[0].round.get('bag')}`);
   console.log('Ending action')
   console.log()
 });
