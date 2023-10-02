@@ -1,6 +1,6 @@
 export const OnePlayerSetups = [
   {
-    goal: [2, 3, 2, 1],
+    goal: [1, 2, 1, 1],
     board: [
       [[ ], [ ], [ ], [ ], [ ], [ ]],
       [[ ], [ ], [2], [1], [2], [ ]],
@@ -26,7 +26,7 @@ export const OnePlayerSetups = [
     capacity: 10,
   },
   {
-    goal: [2, 3, 2, 1],
+    goal: [3, 1, 2, 2],
     board: [
       [[ ], [0], [0], [ ], [ ], [0]],
       [[0], [ ], [3], [ ], [1], [ ]],
