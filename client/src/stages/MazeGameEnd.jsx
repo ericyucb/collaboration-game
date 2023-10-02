@@ -12,7 +12,7 @@ export function MazeGameEnd() {
 	return (
 		<div className='game'>
 			<div>
-				{'You got a score of {player.round.get(\'score\')}! Click \'Next Game\' below to start the next setup.'}
+				{`You got a score of ${player.round.get('score')}! Click 'Next Game' below to start the next setup.`}
 			</div>
 			<Button primary handleClick={() => player.stage.set('submit', true)}>
 				<p>Next Game</p>

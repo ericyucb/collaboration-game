@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '../components/Button'
+import UI from '../assets/UI_annotated.jpg'
 
 export function Introduction({ next }) {
 	return (
@@ -11,7 +12,7 @@ export function Introduction({ next }) {
 				<p className="text-sm">
           The goal of the game is to collect all the items you need to complete the goal displayed on the dashboard while trying to minimize your score.
 				</p>
-				<img className="w-500px" src="../../assets/UI_annotated.jpg" />
+				<img className="w-500px" src={UI} />
 				<p className="text-sm">
           There are three types of actions you can make on any turn:
 				</p>

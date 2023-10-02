@@ -7,9 +7,7 @@ import {
 import { ITEM_NAMES } from '../settings'
 import '../css/Dashboard.css'
 
-export function Dashboard({ goal, individualGoal, capacity, bag, collectiveBag, canMove }) {
-	const bagTotal = bag.reduce((currSum, num) => currSum + num, 0)
-
+export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, collectiveBag, canMove }) {
 	return (
 		<div className='dashboard'>
 			<div className='bag'>
@@ -52,20 +50,16 @@ function BagList({ bag, collectiveBag=null, individualGoal, sharedGoal=null, can
 				className={canMove && bag[item] ? 'list-item can-drop' : 'list-item'}
 				onClick={() => canMove && bag[item] !== 0 ? player.stage.set('drop item', item) : null}
 			>
+        {bag[item]}/
+        <span className={bag[item] < individualGoal[item] ? 'list-item-incomplete' : 'list-item-complete'}>{individualGoal[item]}</span>
 				{
 					sharedGoal ?
-						<>
-							{bag[item]}/
-							<span className={bag[item] < individualGoal[item] ? 'list-item-incomplete' : 'list-item-complete'}>{individualGoal[item]}</span>/
-							<span className={collectiveBag[item] < sharedGoal[item] ? 'list-item-incomplete' : 'list-item-complete'}>{sharedGoal[item]}</span>
-							{` ${itemName}`}
-						</> :
-						<>
-							{bag[item]}/
-							<span className={bag[item] < individualGoal[item] ? 'list-item-incomplete' : ''}>{individualGoal[item]}</span>
-							{itemName}
-						</>
+            <span className={collectiveBag[item] < sharedGoal[item] ? 'list-item-incomplete' : 'list-item-complete'}>
+              {`/${sharedGoal[item]}`}
+            </span> :
+            null
 				}
+        {` ${itemName}`}
 			</p>
 		)
 	}

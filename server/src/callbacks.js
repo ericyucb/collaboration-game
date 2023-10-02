@@ -13,13 +13,15 @@ Empirica.onGameStart(({ game }) => {
 
   game.set('setups', setups);
 
+  console.log('Creating rounds')
   setups.forEach((setup, index) => {
     let setupIndex = setup.setupIndex;
     setup = setup.setup;
 
     for (let i = 0; i < Iterations; i++) {
+      const roundName = `Round ${index * Iterations + i + 1} | Setup ${setupIndex + 1} | Trial ${i + 1}`
       const round = game.addRound({
-        name: `Setup ${index * Iterations + i}`,
+        name: roundName,
         setup: setup,
         setupIndex: setupIndex,
         board: setup.board, // Mutable
@@ -38,17 +40,22 @@ Empirica.onGameStart(({ game }) => {
         name: 'Maze Game',
         duration: 10000,
       });
+      console.log(`Created ${roundName}`)
     }
   });
+  console.log();
 });
 
 Empirica.onRoundStart(({ round }) => {
+  console.log(`Starting ${round.get('name')}`);
   const setup = round.get('setup');
 
   round.currentGame.players.forEach((player, index) => {
-    player.round.set('position', setup.playerPositions[index]);
-    player.round.set('bag', setup.goal.map(() => 0));
-    player.round.set('score', 0);
+    if (!player.round.get('position')) { // For weird Heisenbug round reset
+      player.round.set('position', setup.playerPositions[index]);
+      player.round.set('bag', setup.goal.map(() => 0));
+      player.round.set('score', 0);
+    }
 
     if (round.currentGame.players.length === 2) {
       player.round.set('individual goal', setup.individualGoals[index]);
@@ -57,11 +64,15 @@ Empirica.onRoundStart(({ round }) => {
 });
 
 Empirica.onStageStart(({ stage }) => {
+  console.log('Starting action');
+  console.log(`DEBUG: At the start of action, player 0's bag is ${stage.currentGame.players[0].round.get('bag')}`);
   if (stage.get('name') === 'Maze Game') {
     stage.currentGame.players.forEach(player => {
-      player.stage.set('action', null);
-      player.stage.set('collect item', null);
-      player.stage.set('drop item', null);
+      if (player.stage !== undefined) {
+        player.stage.set('action', null);
+        player.stage.set('collect item', null);
+        player.stage.set('drop item', null);
+      }
     });
   }
 });
@@ -77,6 +88,7 @@ Empirica.onStageEnded(({ stage }) => {
   
   players.forEach(player => {
     const [ newBoard, playerPos, playerBag ] = updateGame(board, player.stage.get('action'), player);
+    console.log(`Setting bag to ${playerBag}`);
 
     board = newBoard;
     player.round.set('position', playerPos);
@@ -99,14 +111,21 @@ Empirica.onStageEnded(({ stage }) => {
       name: `Maze Game End`,
       duration: 10000,
     });
+    console.log('Goals fulfilled')
   } else {
     stage.round.addStage({
       name: `Maze Game`,
       duration: 10000,
     });
+    console.log('Goals unfulfilled')
   }
+  console.log(`DEBUG: At the end of action, player 0's bag is ${players[0].round.get('bag')}`);
+  console.log('Ending action')
+  console.log()
 });
 
-Empirica.onRoundEnded(({ round }) => {});
+Empirica.onRoundEnded(({ round }) => {
+  console.log(`Ending ${round.get('name')}`)
+});
 
 Empirica.onGameEnded(({ game }) => {});

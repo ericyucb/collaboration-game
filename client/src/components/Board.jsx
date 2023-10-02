@@ -9,7 +9,7 @@ import { Player } from './Player'
 import { Magazine } from './Item'
 import { samePos, adjPos, surroundPos } from '../../../Utils'
 
-export function Board({ board, playerPos, playerId, otherPos, otherId, vision, canMove }) {
+export function Board({ board, playerPos, playerId, otherPos, otherId, vision, canMove, canCollect }) {
 	const numRows = board.length
 	const numCols = board[0].length
 
@@ -42,7 +42,7 @@ export function Board({ board, playerPos, playerId, otherPos, otherId, vision, c
 					{hasPlayer ? <Player id={cellPlayerId} draggable={canMove && hasCurrentPlayer} /> : null}
 					{board[r][c].length === 0 ?
 						null :
-						<Magazine items={board[r][c]} corner={hasPlayer} isLive={canMove && hasCurrentPlayer} />
+						<Magazine items={board[r][c]} corner={hasPlayer} isLive={canMove && canCollect && hasCurrentPlayer} />
 					}
 				</Cell>,
 			)
