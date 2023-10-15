@@ -11,6 +11,7 @@ export function ExitSurvey({ next }) {
 	const [name, setName] = useState('')
 	const [strength, setStrength] = useState('')
 	const [feedback, setFeedback] = useState('')
+  const [sanity, setSanity] = useState('')
 
 	function handleSubmit(event) {
 		event.preventDefault()
@@ -18,6 +19,7 @@ export function ExitSurvey({ next }) {
 			name,
 			strength,
 			feedback,
+      sanity,
 		})
 		next()
 	}
@@ -59,13 +61,17 @@ export function ExitSurvey({ next }) {
 								</div>
 							</div>
 
-							<div className="grid grid-cols-2 gap-x-6 gap-y-3">
+							<div className="grid grid-cols-3 gap-x-6 gap-y-3">
 								<label className={labelClassName}>
                   How would you describe your strength in the game?
 								</label>
 
 								<label className={labelClassName}>
                   Feedback, including problems you encountered.
+								</label>
+
+                <label className={labelClassName}>
+                  Type '32' (without the quotes) in the text area below.
 								</label>
 
 								<textarea
@@ -86,6 +92,16 @@ export function ExitSurvey({ next }) {
 									rows={4}
 									value={feedback}
 									onChange={(e) => setFeedback(e.target.value)}
+								/>
+
+                <textarea
+									className={inputClassName}
+									dir="auto"
+									id="sanity"
+									name="sanity"
+									rows={4}
+									value={sanity}
+									onChange={(e) => setSanity(e.target.value)}
 								/>
 							</div>
 

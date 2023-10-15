@@ -7,7 +7,10 @@ import { Loading } from '@empirica/core/player/react'
 import React from 'react'
 
 import { MazeGame } from './stages/MazeGame'
+import { IntroEnd } from './stages/IntroEnd'
 import { MazeGameEnd } from './stages/MazeGameEnd'
+
+import './css/Stage.css'
 
 export function Stage() {
 	const player = usePlayer()
@@ -31,5 +34,7 @@ export function Stage() {
 		return <MazeGame />
 	case 'Maze Game End':
 		return <MazeGameEnd />
+  case 'Intro End':
+    return <IntroEnd />
 	}
 }

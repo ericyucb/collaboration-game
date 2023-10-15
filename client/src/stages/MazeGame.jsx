@@ -3,19 +3,24 @@ import {
 	usePlayer,
 	usePlayers,
 	useRound,
+  useGame,
 } from '@empirica/core/player/classic/react'
 
-import '../css/Game.css'
+import '../css/MazeGame.css'
 
 import { Board } from '../components/Board'
 import { Dashboard } from '../components/Dashboard'
 import { Controls } from '../components/Controls'
-import { updateGame } from '../../../Utils'
+import { Scores } from '../components/Scores'
+import { Tip } from '../components/Tip'
+import { HelpPopup } from '../components/HelpPopup'
+import { updateGame } from '../../../settings/Utils'
 
 export function MazeGame() {
 	const round = useRound()
 	const player = usePlayer()
 	const players = usePlayers()
+  const game = useGame()
 
 	const otherPlayer = players.length === 2 ? players.filter(p => p.id !== player.id)[0] : null
 
@@ -31,8 +36,13 @@ export function MazeGame() {
 
 	const collectiveBag = players.length === 2 ? otherPlayer.round.get('bag').map((numItem, index) => numItem + nextPlayerBag[index]) : null
 
+  const fullVision = player.stage.get('vision')
+
+  const introRound = round.get('name') === 'Introduction Round'
+
 	return (
 		<div className='game'>
+      {introRound ? <Tip /> : null}
 			<div className='game-board'>
 				<Board
 					board={nextBoard}
@@ -41,6 +51,7 @@ export function MazeGame() {
 					otherPos={otherPlayer ? otherPlayer.round.get('position') : null}
 					otherId={otherPlayer ? otherPlayer.id : null}
 					vision={player.round.get('position')}
+          fullVision={fullVision}
 					canMove={canMove}
           canCollect={canCollect}
 				/>
@@ -52,9 +63,13 @@ export function MazeGame() {
           bagTotal={bagTotal}
 					collectiveBag={collectiveBag}
 					canMove={canMove}
+          visionAllowed={introRound}
+          fullVision={fullVision}
 				/>
 			</div>
-			<Controls canMove={canMove} />
+      <Controls canMove={canMove} />
+      {introRound ? null : <Scores scores={player.game.get('scores')} setups={game.get('setups')} />}
+      {player.stage.get('help') ? <HelpPopup /> : null}
 		</div>
 	)
 }

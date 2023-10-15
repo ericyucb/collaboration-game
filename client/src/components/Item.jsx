@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { COLORS } from '../settings'
+import { COLORS } from '../../../settings/Settings'
 import '../css/Item.css'
 import {
 	usePlayer,

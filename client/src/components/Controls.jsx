@@ -5,10 +5,7 @@ import {
 
 import '../css/Controls.css'
 
-import { Item } from './Item'
-
-const live = 'hover:brightness-90 cursor-pointer'
-const disabled = 'opacity-30'
+import { ControlButton, ControlIconButton } from './ControlButton'
 
 export function Controls({ canMove }) {
 	const player = usePlayer()
@@ -26,7 +23,7 @@ export function Controls({ canMove }) {
 		player.stage.set('drop item', null)
 	}
 
-  const handleLockIn = () => {
+  const handleProceed = () => {
     console.log(player.stage.get('action'))
     player.stage.set('submit', true)
   }
@@ -41,27 +38,8 @@ export function Controls({ canMove }) {
 		<div className='controls'>
 			<ControlIconButton name='Collect' onClick={handleCollectItem} displayIcon={collectItem} />
 			<ControlIconButton name='Drop' onClick={handleDropItem} displayIcon={dropItem} />
-			<ControlButton name='Lock In' onClick={handleLockIn} isLive={!canMove} />
+			<ControlButton name='Proceed' onClick={handleProceed} isLive={!canMove} />
 			<ControlButton name='Reset' onClick={handleReset} isLive={!canMove} />
-		</div>
-	)
-}
-
-function ControlButton({ name, onClick, isLive=true }) {
-	return (
-		<div className={`control-button bg-blue-500 ${isLive ? live : disabled}`} onClick={isLive ? onClick : () => {}}>
-			<h3>{name}</h3>
-		</div>
-	)
-}
-
-function ControlIconButton({ name, onClick, displayIcon }) {
-	const isLive = displayIcon !== null
-  
-	return (
-		<div className={`control-button bg-blue-500 ${isLive ? live : disabled}`} onClick={isLive ? onClick : () => {}}>
-			<h3>{name}</h3>
-			{displayIcon === null ? null : <Item type={displayIcon} />}
 		</div>
 	)
 }

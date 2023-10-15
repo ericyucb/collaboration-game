@@ -10,9 +10,9 @@ export function Game() {
 
 	return (
 		<div className="h-full w-full flex">
-			<div className="h-full w-full flex flex-col">
+			<div className="h-full w-full flex flex-col items-center">
 				<Profile />
-				<div className="h-full flex items-center justify-center">
+				<div className="h-full w-3/5 flex items-center justify-center">
 					<Stage />
 				</div>
 			</div>

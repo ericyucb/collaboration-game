@@ -1,0 +1,58 @@
+.questionaire {
+  display: flex;
+  flex-direction: column;
+}
+
+.questions {
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.question {
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.choices {
+  margin: 5px 0;
+  display: flex;
+}
+
+.choice {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.radio-label {
+  margin-left: 5px;
+}
+
+.correct {
+  background-color: greenyellow;
+}
+
+.incorrect {
+  background-color: pink;
+}
+
+.intro-submit-btn {
+  align-self: center;
+}
+
+.intro-submit-btn {
+  align-self: center;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0.4, 0.4, 0.4, .15);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}

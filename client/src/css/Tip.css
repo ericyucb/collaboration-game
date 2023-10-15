@@ -1,8 +1,8 @@
-.controls {
+.tip {
   width: 100%;
-  padding: 25px;
+  padding: 15px;
   border: 1px solid black;
-  border-top: 0px;
+  border-bottom: 0px;
   display: flex;
   flex-direction: row;
   align-items: center;

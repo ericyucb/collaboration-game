@@ -1,10 +1,11 @@
 export const OnePlayerSetups = [
   {
+    name: 'Oak',
     goal: [1, 2, 1, 1],
     board: [
       [[ ], [ ], [ ], [ ], [ ], [ ]],
-      [[ ], [ ], [2], [1], [2], [ ]],
-      [[ ], [ ], [ ], [1], [ ], [ ]],
+      [[ ], [ ], [2], [1], [ ], [ ]],
+      [[ ], [ ], [ ], [1], [2], [ ]],
       [[ ], [3], [ ], [0], [ ], [ ]],
       [[ ], [ ], [ ], [ ], [ ], [ ]],
       [[ ], [ ], [ ], [1], [1], [ ]],
@@ -13,6 +14,7 @@ export const OnePlayerSetups = [
     capacity: 7,
   },
   {
+    name: 'Birch',
     goal: [2, 3, 2, 1],
     board: [
       [[ ], [ ], [0], [2], [1], [ ]],
@@ -26,6 +28,7 @@ export const OnePlayerSetups = [
     capacity: 10,
   },
   {
+    name: 'Pine',
     goal: [3, 1, 2, 2],
     board: [
       [[ ], [0], [0], [ ], [ ], [0]],
@@ -56,6 +59,37 @@ export const TwoPlayerSetups = [
     capacity: 10,
   },
 ];
+
+export const OnePlayerIntroSetup = {
+  name: 'Intro',
+  goal: [1, 2, 1],
+  board: [
+    [[ ], [ ], [ ], [ ], [ ], [2]],
+    [[ ], [ ], [ ], [ ], [ ], [ ]],
+    [[ ], [ ], [ ], [ ], [ ], [ ]],
+    [[ ], [ ], [0], [ ], [ ], [ ]],
+    [[ ], [ ], [1], [1], [ ], [ ]],
+    [[ ], [ ], [ ], [ ], [ ], [ ]],
+  ],
+  playerPositions: [[2, 2]],
+  capacity: 4,
+}
+
+export const TwoPlayerIntroSetup = { // Not actually an intro setup currently
+  name: 'Intro',
+  goal: [7, 3, 5],
+    individualGoals: [[1, 2, 3], [2, 3, 4]],
+    board: [
+      [[1], [ ], [2], [0], [0], [ ]],
+      [[1], [2], [ ], [0], [0], [0]],
+      [[2], [ ], [2], [0], [0], [0]],
+      [[0], [0], [0], [2], [ ], [2]],
+      [[0], [0], [0], [ ], [ ], [1]],
+      [[ ], [0], [0], [2], [1], [1]],
+    ],
+    playerPositions: [[5, 1], [0, 5]],
+    capacity: 10,
+}
 
 export const OnePlayerTestSetups = [
   {
@@ -170,4 +204,4 @@ export const TwoPlayerTestSetups = [
   },
 ];
 
-export const Iterations = 2;
+export const Attempts = 2;

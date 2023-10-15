@@ -4,13 +4,17 @@ import {
 	useRound,
 } from '@empirica/core/player/classic/react'
 
-import { ITEM_NAMES } from '../settings'
+import { HelpButton } from './HelpPopup'
+
+import { ITEM_NAMES } from '../../../settings/Settings'
 import '../css/Dashboard.css'
 
-export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, collectiveBag, canMove }) {
+export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, collectiveBag, canMove, visionAllowed }) {
+  const player = usePlayer()
+
 	return (
 		<div className='dashboard'>
-			<div className='bag'>
+			<div className='bag flex-1'>
 				<h2 className='bag-title'><u>Bag</u></h2>
 				<h5 className='capacity'>Bag Total: <span style={bagTotal === capacity ? {color: 'red'} : {}}>{bagTotal}/{capacity}</span></h5>
 				{
@@ -35,6 +39,19 @@ export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, colle
 						</>
 				}
 			</div>
+      <HelpButton />
+      {
+        visionAllowed ?
+        <div
+          className={`control-button bg-blue-200 hover:brightness-90 cursor-pointer`}
+          onMouseDown={() => player.stage.set('vision', true)}
+          onMouseUp={() => player.stage.set('vision', false)}
+          onMouseLeave={() => player.stage.set('vision', false)}
+        >
+          <h3>Toggle Vision</h3>
+        </div> :
+        null
+      }
 		</div>
 	)
 }

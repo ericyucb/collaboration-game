@@ -1,0 +1,11 @@
+.control-button {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.control-button > h3 {
+  margin: 0px;
+}

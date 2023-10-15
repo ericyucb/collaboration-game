@@ -1,0 +1,15 @@
+.intro-end {
+  padding: 30px 40px;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: absolute;
+  width: 50%;
+}
+
+.start-label {
+  margin: 10px 0px;
+}
+
+.intro-end-btn {
+  align-self: center;
+}

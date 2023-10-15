@@ -7,9 +7,9 @@ import '../css/Board.css'
 import { Cell } from './Cell'
 import { Player } from './Player'
 import { Magazine } from './Item'
-import { samePos, adjPos, surroundPos } from '../../../Utils'
+import { samePos, adjPos, surroundPos } from '../../../settings/Utils'
 
-export function Board({ board, playerPos, playerId, otherPos, otherId, vision, canMove, canCollect }) {
+export function Board({ board, playerPos, playerId, otherPos, otherId, vision, fullVision, canMove, canCollect }) {
 	const numRows = board.length
 	const numCols = board[0].length
 
@@ -37,7 +37,7 @@ export function Board({ board, playerPos, playerId, otherPos, otherId, vision, c
 					key={`${r} ${c}`}
 					row={r} col={c}
 					moveAdj={moveAdj}
-					visionAdj={visionAdj}
+					visionAdj={fullVision || visionAdj}
 				>
 					{hasPlayer ? <Player id={cellPlayerId} draggable={canMove && hasCurrentPlayer} /> : null}
 					{board[r][c].length === 0 ?

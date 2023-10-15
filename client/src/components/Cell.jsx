@@ -7,7 +7,7 @@ import { CellDropTarget } from './CellDropTarget'
 export function Cell({ row, col, movePlayer, moveAdj, visionAdj, children }) {
 	if (!visionAdj) { // Remove false condition once done debugging
 		return (
-			<div className='cell invis' />
+			<div className='cell invis bg-blue-100' />
 		)
 	}
 
