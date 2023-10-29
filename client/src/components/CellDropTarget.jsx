@@ -11,6 +11,8 @@ export function CellDropTarget({ row, col, children }) {
 
 	const movePlayer = () => {
 		player.stage.set('action', { 'type': 'move', 'position': [row, col] })
+    player.stage.set('collect item', null)
+    player.stage.set('drop item', null)
 	}
 
 	const [{ isOver, canDrop }, drop] = useDrop(

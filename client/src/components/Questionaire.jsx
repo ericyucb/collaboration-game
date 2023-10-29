@@ -89,7 +89,7 @@ export function Question({ question, choices, answer, explanation, direction, nu
         ))}
       </div>
       {
-        selected[num] === answer ?
+        submitted && selected[num] === answer ?
         <p>Correct! {explanation}</p> :
         null
       }
