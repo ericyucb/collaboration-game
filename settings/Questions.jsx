@@ -74,7 +74,7 @@ export const QUESTIONS = [
       '2',
       'Infinite',
     ],
-    answer: 1,
+    answer: 3,
     explanation: 'There is no limit to the number of items in a cell.',
     direction: 'row',
   },
