@@ -123,7 +123,7 @@ Empirica.onStageEnded(({ stage }) => {
     
     const players = stage.currentGame.players;
     const playerBags = [];
-    
+
     players.forEach(player => {
       const [ newBoard, playerPos, playerBag ] = updateGame(board, player.stage.get('action'), player);
 

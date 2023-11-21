@@ -13,31 +13,41 @@ export function Controls({ canMove }) {
 	const collectItem = player.stage.get('collect item')
 	const dropItem = player.stage.get('drop item')
 
+  const resetQueuedItems = () => {
+    player.stage.set('collect item', null)
+		player.stage.set('drop item', null)
+  }
+
 	const handleCollectItem = () => {
 		player.stage.set('action', { type: 'collect', item: collectItem })
-		player.stage.set('collect item', null)
+		resetQueuedItems()
 	}
 
 	const handleDropItem = () => {
 		player.stage.set('action', { type: 'drop', item: dropItem })
-		player.stage.set('drop item', null)
+		resetQueuedItems()
 	}
 
+  const handleSkip = () => {
+    player.stage.set('action', { type: 'skip'})
+    resetQueuedItems()
+  }
+
   const handleProceed = () => {
-    console.log(player.stage.get('action'))
     player.stage.set('submit', true)
+    resetQueuedItems()
   }
   
 	const handleReset = () => {
 		player.stage.set('action', null)
-		player.stage.set('collect item', null)
-		player.stage.set('drop item', null)
+		resetQueuedItems()
 	}
 
 	return (
 		<div className='controls'>
 			<ControlIconButton name='Collect' onClick={handleCollectItem} displayIcon={collectItem} />
 			<ControlIconButton name='Drop' onClick={handleDropItem} displayIcon={dropItem} />
+      <ControlButton name='Skip' onClick={handleSkip} isLive={canMove} />
 			<ControlButton name='Proceed' onClick={handleProceed} isLive={!canMove} />
 			<ControlButton name='Reset' onClick={handleReset} isLive={!canMove} />
 		</div>

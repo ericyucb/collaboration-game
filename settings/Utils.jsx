@@ -20,6 +20,8 @@ export function updateGame(board, action, player) {
 
   if (action === null) return [board, pos, bag];
 
+  if (action.type === 'skip') return [board, pos, bag];
+
   if (action.type === 'move') {
     if (adjPos(pos, action.position)) {
       return [board, action.position, bag];
