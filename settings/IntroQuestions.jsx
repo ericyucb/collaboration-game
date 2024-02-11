@@ -1,6 +1,8 @@
-export const QUESTIONS = [
+export const INTROQUESTIONS = [
   {
     question: 'Which of these is not a possible action?',
+    tag: 'action',
+    type: 'mc',
     choices: [
       'Move',
       'Collect',
@@ -13,6 +15,8 @@ export const QUESTIONS = [
   },
   {
     question: 'When not on the edge of the board, how many directions can you move in?',
+    tag: 'movement',
+    type: 'mc',
     choices: [
       '2',
       '4',
@@ -24,6 +28,8 @@ export const QUESTIONS = [
   },
   {
     question: 'What is the maximum number of cells you can see at any given point?',
+    tag: 'vision',
+    type: 'mc',
     choices: [
       '4',
       '8',
@@ -36,6 +42,8 @@ export const QUESTIONS = [
   },
   {
     question: 'How do you collect an item?',
+    tag: 'collect',
+    type: 'mc',
     choices: [
       'Click the item in the cell the player is in, click the \'Collect\' button, and then click the \'Proceed\' button.',
       'Click the item in the bag, click the \'Collect\' button, and then click the \'Proceed\' button.',
@@ -46,6 +54,8 @@ export const QUESTIONS = [
   },
   {
     question: 'How do you drop an item?',
+    tag: 'drop',
+    type: 'mc',
     choices: [
       'Click the item in the cell the player is in, click the \'Drop\' button, and then click the \'Proceed\' button.',
       'Click the item in the bag, click the \'Drop\' button, and then click the \'Proceed\' button.',
@@ -56,6 +66,8 @@ export const QUESTIONS = [
   },
   {
     question: 'Which of the following is the best number of turns?',
+    tag: 'score',
+    type: 'mc',
     choices: [
       '32',
       '12',
@@ -68,6 +80,8 @@ export const QUESTIONS = [
   },
   {
     question: 'What is the maximum number of items that can be in a cell?',
+    tag: 'items',
+    type: 'mc',
     choices: [
       '0',
       '1',

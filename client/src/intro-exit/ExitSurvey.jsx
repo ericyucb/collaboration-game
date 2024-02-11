@@ -1,117 +1,73 @@
 import { usePlayer } from '@empirica/core/player/classic/react'
 import React, { useState } from 'react'
 import { Button } from '../components/Button'
+import { Question } from '../components/Question'
+import { EXITQUESTIONS } from '../../../settings/ExitQuestions'
+
+import '../css/Questionaire.css'
+import '../css/ExitSurvey.css'
 
 export function ExitSurvey({ next }) {
-	const labelClassName = 'block text-sm font-medium text-gray-700 my-2'
-	const inputClassName =
-    'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-empirica-500 focus:border-empirica-500 sm:text-sm'
 	const player = usePlayer()
+  const feedback = player.get('exitSurvey')
+  const [ failedSubmit, setFailedSubmit ] = useState(false)
 
-	const [name, setName] = useState('')
-	const [strength, setStrength] = useState('')
-	const [feedback, setFeedback] = useState('')
-  const [sanity, setSanity] = useState('')
+  const setAnswer = (value, tag) => {
+    const feedbackCopy = {...feedback}
+    feedbackCopy[tag] = value
+    player.set('exitSurvey', feedbackCopy)
+  }
 
-	function handleSubmit(event) {
+	const handleSubmit = event => {
 		event.preventDefault()
-		player.set('exitSurvey', {
-			name,
-			strength,
-			feedback,
-      sanity,
-		})
-		next()
+    const surveyComplete = Object.values(feedback).every(e => e.toString().trim().length != 0)
+    if (surveyComplete) {
+      next()
+    } else {
+      setFailedSubmit(true)
+    }
 	}
 
-	return (
-		<div className="py-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-			<form
-				className="mt-12 space-y-8 divide-y divide-gray-200"
-				onSubmit={handleSubmit}
-			>
-				<div className="space-y-8 divide-y divide-gray-200">
-					<div>
-						<div>
-							<h3 className="text-lg leading-6 font-medium text-gray-900">
-                Exit Survey
-							</h3>
-							<p className="mt-1 text-sm text-gray-500">
-                Please answer the following short survey. You do not have to
-                provide any information you feel uncomfortable with.
-							</p>
-						</div>
+  const renderQuestion = (question, questionNum) => {
+    if (question.type == 'mc' || question.type == 'likert') {
+      return (
+        <Question
+          question={question.question}
+          type={question.type}
+          tag={question.tag}
+          num={questionNum}
+          choices={question.choices}
+          value={feedback[question.tag]}
+          format={{ direction: question.direction }}
+          setAnswer={setAnswer}
+          key={questionNum}
+        />
+      )
+    } else if (question.type == 'fr') {
+      return (
+        <Question
+          question={question.question}
+          type={question.type}
+          tag={question.tag}
+          value={feedback[question.tag]}
+          format={{ direction: question.direction }}
+          setAnswer={setAnswer}
+          key={questionNum}
+        />
+      )
+    }
+  }
 
-						<div className="space-y-8 mt-6">
-							<div className="flex flex-row">
-								<div className="ml-5">
-									<label htmlFor="email" className={labelClassName}>
-                    Name
-									</label>
-									<div className="mt-1">
-										<input
-											id="name"
-											name="name"
-											autoComplete="off"
-											className={inputClassName}
-											value={name}
-											onChange={(e) => setName(e.target.value)}
-										/>
-									</div>
-								</div>
-							</div>
-
-							<div className="grid grid-cols-3 gap-x-6 gap-y-3">
-								<label className={labelClassName}>
-                  How would you describe your strength in the game?
-								</label>
-
-								<label className={labelClassName}>
-                  Feedback, including problems you encountered.
-								</label>
-
-                <label className={labelClassName}>
-                  Type '32' (without the quotes) in the text area below.
-								</label>
-
-								<textarea
-									className={inputClassName}
-									dir="auto"
-									id="strength"
-									name="strength"
-									rows={4}
-									value={strength}
-									onChange={(e) => setStrength(e.target.value)}
-								/>
-
-								<textarea
-									className={inputClassName}
-									dir="auto"
-									id="feedback"
-									name="feedback"
-									rows={4}
-									value={feedback}
-									onChange={(e) => setFeedback(e.target.value)}
-								/>
-
-                <textarea
-									className={inputClassName}
-									dir="auto"
-									id="sanity"
-									name="sanity"
-									rows={4}
-									value={sanity}
-									onChange={(e) => setSanity(e.target.value)}
-								/>
-							</div>
-
-							<div className="mb-12">
-								<Button type="submit">Submit</Button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	)
+  return (
+    <div className='exit-survey'>
+      <h1 className='exit-survey-title'>Exit Survey</h1>
+      <p className={`exit-survey-blurb${ failedSubmit ? ' blurb-bold' : ''}`}>Please answer all of the following questions.</p>
+      <div className='questionaire'>
+        <div className='exit-questions'>{EXITQUESTIONS.map(renderQuestion)}</div>
+        <Button className='intro-submit-btn' primary handleClick={handleSubmit}>
+          <p>Submit</p>
+        </Button>
+      </div>
+    </div>
+  )
 }

@@ -1,7 +1,8 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
 import { OnePlayerSetups, TwoPlayerSetups, OnePlayerIntroSetup, TwoPlayerIntroSetup, Attempts } from "../../settings/Setups";
 import { updateGame, goalFulfilled } from '../../settings/Utils';
-import { QUESTIONS } from '../../settings/Questions';
+import { INTROQUESTIONS } from '../../settings/IntroQuestions';
+import { EXITQUESTIONS } from '../../settings/ExitQuestions';
 export const Empirica = new ClassicListenersCollector();
 
 const createMazeGameRoundParams = (roundName, setup, setupIndex=-1, intro=false) => {
@@ -106,7 +107,7 @@ Empirica.onStageStart(({ stage }) => {
     });
   } else if (stageName === 'Intro End') {
     stage.currentGame.players.forEach(player => {
-      player.set('questionaire', QUESTIONS.map(() => null))
+      player.set('questionaire', INTROQUESTIONS.reduce((obj, question) => ({...obj, [question.tag]: null}), {}))
       player.set('submit check', false)
       player.set('check complete', false)
       if (player.stage !== undefined) { // For weird Heisenbug player.stage not being defined
@@ -176,4 +177,6 @@ Empirica.onRoundEnded(({ round }) => {
   console.log(`Ending ${round.get('name')}`)
 });
 
-Empirica.onGameEnded(({ game }) => {});
+Empirica.onGameEnded(({ game }) => {
+  game.players.forEach(player => player.set('exitSurvey', EXITQUESTIONS.reduce((obj, question) => ({...obj, [question.tag]: null}), {})))
+});

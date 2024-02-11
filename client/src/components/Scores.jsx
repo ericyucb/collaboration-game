@@ -6,7 +6,6 @@ import '../css/Scores.css'
 
 export function Scores({ scores, setups }) {
   const createScores = (scores, setups, numAttempts) => {
-    console.log(setups)
     const scoreElements = []
     for (let attemptIndex = 0; attemptIndex < numAttempts; attemptIndex++) {
       setups.forEach((setup, setupIndex) => {

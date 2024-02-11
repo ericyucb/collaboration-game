@@ -1,0 +1,27 @@
+.exit-survey {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0px;
+}
+
+.exit-survey-title {
+  font-size: 30px;
+}
+
+.exit-survey-blurb {
+  font-size: 12px;
+}
+
+.blurb-bold {
+  font-weight: 500;
+  color: red;
+}
+
+.exit-questions {
+  margin: 15px 0px;
+}
+
+.text-area {
+  width: 100%
+}
