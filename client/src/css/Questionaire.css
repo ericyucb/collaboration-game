@@ -15,13 +15,17 @@
   border-radius: 5px;
 }
 
+.question-text {
+  font-size: 18px;
+}
+
 .choices {
   margin: 5px 0;
   display: flex;
 }
 
 .choice {
-  margin-right: 10px;
+  margin: 5px 10px;
   display: flex;
   align-items: center;
 }

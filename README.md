@@ -51,13 +51,14 @@ Data files are stored in `settings/`.
 The intro questions are presented as a comprehension check after the starter setup and have answers, while the exit questions are presented as an exit survey after the game is complete. In both files, questions are represented in the following form:
 - `question`: A string that is the question to be presented.
 - `tag`: A (short) string that represents the question (to be stored in the data).
-- `type`: Options are between `'mc'` (Multiple choice), `'likert'` (Likert scale), and `'fr'` (Free response).
-- `choices` (Optional): Only required if `'mc'`. An array of choices represented as strings.
+- `type`: Options are between `'mc'` (Multiple choice), `'ms'` (Multiselect), `'likert'` (Likert scale), and `'fr'` (Free response).
+- `choices` (Optional): Only required if `'mc'` or `'ms'`. An array of choices represented as strings.
 - `answer` (Optional, for intro): Currently only working for `'mc'` or `'likert'`. The answer to the question represented as the index of `choices`.
 - `explanation` (Optional, for intro): A string that is the explanation provided on a correct answer.
-- `direction` (Optional): Only required if `'mc'`. Options are between `'row'` or `'column'`. The direction to display choices in.
+- `direction` (Optional): Only required if `'mc'` or `'ms'`. Options are between `'row'` or `'column'`. The direction to display choices in.
 In the intro questions, questions are stored in an array. In the exit questions, questions are grouped into categories. The exit questions are an array of categories, where the categories are objects in the following form:
 - `title`: Title of the category
+- `blurb` (Optional): Blurb to display before the questions.
 - `questions`: The array of questions in the category
 
 ### `Settings.jsx`
