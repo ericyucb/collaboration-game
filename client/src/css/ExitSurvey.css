@@ -6,7 +6,7 @@
 }
 
 .exit-survey-title {
-  font-size: 30px;
+  font-size: 36px;
 }
 
 .exit-survey-blurb {
@@ -18,8 +18,10 @@
   color: red;
 }
 
-.exit-questions {
-  margin: 15px 0px;
+.category-title {
+  font-size: 24px;
+  align-self: center;
+  margin-top: 10px;
 }
 
 .text-area {

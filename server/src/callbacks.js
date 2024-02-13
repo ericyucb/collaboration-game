@@ -178,5 +178,10 @@ Empirica.onRoundEnded(({ round }) => {
 });
 
 Empirica.onGameEnded(({ game }) => {
-  game.players.forEach(player => player.set('exitSurvey', EXITQUESTIONS.reduce((obj, question) => ({...obj, [question.tag]: null}), {})))
+  game.players.forEach(player => player.set('exitSurvey', EXITQUESTIONS.reduce(
+    (obj, category) => ({...obj, [category.title]: category.questions.reduce(
+      (obj, question) => ({...obj, [question.tag]: null}),
+      {})}),
+    {}
+  )))
 });

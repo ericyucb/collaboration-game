@@ -56,6 +56,9 @@ The intro questions are presented as a comprehension check after the starter set
 - `answer` (Optional, for intro): Currently only working for `'mc'` or `'likert'`. The answer to the question represented as the index of `choices`.
 - `explanation` (Optional, for intro): A string that is the explanation provided on a correct answer.
 - `direction` (Optional): Only required if `'mc'`. Options are between `'row'` or `'column'`. The direction to display choices in.
+In the intro questions, questions are stored in an array. In the exit questions, questions are grouped into categories. The exit questions are an array of categories, where the categories are objects in the following form:
+- `title`: Title of the category
+- `questions`: The array of questions in the category
 
 ### `Settings.jsx`
 - `ITEM_NAMES`: The item names to display in the dashboard.

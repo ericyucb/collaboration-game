@@ -12,9 +12,9 @@ export function ExitSurvey({ next }) {
   const feedback = player.get('exitSurvey')
   const [ failedSubmit, setFailedSubmit ] = useState(false)
 
-  const setAnswer = (value, tag) => {
+  const setAnswer = (value, category, tag) => {
     const feedbackCopy = {...feedback}
-    feedbackCopy[tag] = value
+    feedbackCopy[category][tag] = value
     player.set('exitSurvey', feedbackCopy)
   }
 
@@ -28,7 +28,7 @@ export function ExitSurvey({ next }) {
     }
 	}
 
-  const renderQuestion = (question, questionNum) => {
+  const renderQuestion = (question, category, questionNum) => {
     if (question.type == 'mc' || question.type == 'likert') {
       return (
         <Question
@@ -37,9 +37,9 @@ export function ExitSurvey({ next }) {
           tag={question.tag}
           num={questionNum}
           choices={question.choices}
-          value={feedback[question.tag]}
+          value={feedback[category][question.tag]}
           format={{ direction: question.direction }}
-          setAnswer={setAnswer}
+          setAnswer={(value, tag) => setAnswer(value, category, tag)}
           key={questionNum}
         />
       )
@@ -49,9 +49,9 @@ export function ExitSurvey({ next }) {
           question={question.question}
           type={question.type}
           tag={question.tag}
-          value={feedback[question.tag]}
+          value={feedback[category][question.tag]}
           format={{ direction: question.direction }}
-          setAnswer={setAnswer}
+          setAnswer={(value, tag) => setAnswer(value, category, tag)}
           key={questionNum}
         />
       )
@@ -63,7 +63,14 @@ export function ExitSurvey({ next }) {
       <h1 className='exit-survey-title'>Exit Survey</h1>
       <p className={`exit-survey-blurb${ failedSubmit ? ' blurb-bold' : ''}`}>Please answer all of the following questions.</p>
       <div className='questionaire'>
-        <div className='exit-questions'>{EXITQUESTIONS.map(renderQuestion)}</div>
+        {
+          EXITQUESTIONS.map(category => (
+            <>
+              <h2 className='category-title'>{category.title}</h2>
+              <div className='exit-questions'>{category.questions.map((question, index) => renderQuestion(question, category.title, index))}</div>
+            </>
+          ))
+        }
         <Button className='intro-submit-btn' primary handleClick={handleSubmit}>
           <p>Submit</p>
         </Button>

@@ -47,7 +47,7 @@ export function Controls({ canMove }) {
 		<div className='controls'>
 			<ControlIconButton name='Collect' onClick={handleCollectItem} displayIcon={collectItem} />
 			<ControlIconButton name='Drop' onClick={handleDropItem} displayIcon={dropItem} />
-      <ControlButton name='Skip' onClick={handleSkip} isLive={canMove} />
+      {/* <ControlButton name='Skip' onClick={handleSkip} isLive={canMove} /> */}
 			<ControlButton name='Proceed' onClick={handleProceed} isLive={!canMove} />
 			<ControlButton name='Reset' onClick={handleReset} isLive={!canMove} />
 		</div>
