@@ -85,16 +85,6 @@ export const EXITQUESTIONS = [
         type: 'fr'
       },
       {
-        question: 'Would you prioritize individual objectives or have the same priority for both individual goals and collaborative goals?',
-        tag: 'priority',
-        type: 'mc',
-        choices: [
-          'Individual',
-          'Both for individual and and collaborative goals',
-        ],
-        direction: 'row'
-      },
-      {
         question: 'When approaching problem-solving in a collaborative setting, which strategy do you prefer?',
         tag: 'colab-strategy',
         type: 'mc',
