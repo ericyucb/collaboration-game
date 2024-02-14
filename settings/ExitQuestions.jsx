@@ -46,11 +46,6 @@ export const EXITQUESTIONS = [
         type: 'fr',
       },
       {
-        question: 'How did your strategy change for the second round?',
-        tag: 'change',
-        type: 'fr',
-      },
-      {
         question: 'Please select the strategy/strategies that best align with your approach to navigating the maze.',
         tag: 'strategy',
         type: 'ms',
@@ -62,6 +57,11 @@ export const EXITQUESTIONS = [
           'Adapter Strategy: Players adapt their strategies based on the evolving game dynamics, displaying flexibility in decision-making and adjusting approaches as needed.'
         ],
         direction: 'column'
+      },
+      {
+        question: 'How did your strategy change for the second round?',
+        tag: 'change',
+        type: 'fr',
       },
       {
         question: 'Which type of advice do you believe would most effectively improve your score?',
