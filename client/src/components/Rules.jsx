@@ -1,5 +1,6 @@
 import React from "react"
 import UI from '../assets/UI_annotated.jpg'
+import action1 from '../assets/reset_move.gif'
 
 export function Rules() {
   return (
