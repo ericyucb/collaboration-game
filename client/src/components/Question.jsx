@@ -1,12 +1,15 @@
 import React from 'react'
 
 const LIKERT_SCALE = ['1 - Strongly Disagree', '2 - Disagree', '3 - Neutral', '4 - Agree', '5 - Strongly Agree']
+const SEVEN_SCALE = ['1', '2', '3 ', '4', '5 ', '6', '7']
+
 
 export function Question({ question, type, tag, choices=[], value=null, solution={}, format, setAnswer }) {
   const answerSpace = (type, tag, choices, value, direction, disabled, setAnswer) => {
     if (type === 'likert') choices = LIKERT_SCALE
+    if (type === 'seven') choices = SEVEN_SCALE
 
-    if (type === 'likert' || type === 'mc') {
+    if (type === 'likert' || type === 'mc' || type === 'seven') {
       return (
         <div className='choices' style={{
           flexDirection: direction,
