@@ -53,7 +53,7 @@ export function ExitSurvey({ next }) {
 	}
 
   const renderQuestion = (question, category, questionNum) => {
-    if (question.type == 'mc' || question.type == 'likert' || question.type == 'ms') {
+    if (question.type == 'mc' || question.type == 'likert' || question.type == 'ms' || question.type == 'seven') {
       return (
         <Question
           question={question.question}

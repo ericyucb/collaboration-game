@@ -107,5 +107,56 @@ export const EXITQUESTIONS = [
         direction: 'column'
       }
     ],
+  },
+  {
+    'title': 'Collaboration-Team',
+    'blurb': 'Answer the following questions in the scale from 1 to 7',
+    'questions': [
+      {
+        question: `Who would you prefer as a teammate? (1- Team Priority, 7- Personal Priority)
+
+        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer.
+        
+        7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
+        tag: 'teamwork',
+        type: 'seven'
+      },
+      {
+        question: `Who would you prefer as a teammate? (1- Divide and Conquer, 7- Tackle Together)\n\n
+
+        1: Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish.\n\n
+
+        7: Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
+        tag: 'teamPreference',
+        type: 'seven'
+      },
+      {
+        question: `If you are reading this question, please select option 7- Tackle Together.\n\n
+        
+        1: Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish.\n\n
+        
+        7: Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
+        tag: 'taskManagement',
+        type: 'seven'
+      },
+      {
+        question: `When deciding on goals in a group setting, which would you do? (1- Team Priority, 7- Personal Priority)\n\n
+        
+        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer.\n\n
+        
+        7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
+        tag: 'goalSetting',
+        type: 'seven'
+      },
+      {
+        question: `Who would you prefer as a teammate? (1- Team Priority, 7- Personal Priority)\n\n
+        
+        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer.\n\n
+        
+        7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
+        tag: 'teammateChoice',
+        type: 'seven'
+      }
+    ]
   }
 ]
