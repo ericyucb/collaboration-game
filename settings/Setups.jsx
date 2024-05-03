@@ -1,7 +1,7 @@
 export const OnePlayerSetups = [
   {
     name: 'Oak',
-    goal: [1, 0, 0, 0],
+    goal: [1, 2, 1, 1],
     board: [
       [[ ], [ ], [ ], [ ], [ ], [ ]],
       [[ ], [ ], [2], [1], [ ], [ ]],
@@ -15,7 +15,7 @@ export const OnePlayerSetups = [
   },
   {
     name: 'Birch',
-    goal: [1, 0, 0, 0],
+    goal: [2, 3, 2, 1],
     board: [
       [[ ], [ ], [0], [2], [1], [ ]],
       [[ ], [ ], [ ], [1], [ ], [ ]],
@@ -29,7 +29,7 @@ export const OnePlayerSetups = [
   },
   {
     name: 'Pine',
-    goal: [1, 0, 0, 0],
+    goal: [3, 1, 2, 2],
     board: [
       [[ ], [0], [0], [ ], [ ], [0]],
       [[0], [ ], [3], [ ], [1], [ ]],
@@ -204,4 +204,4 @@ export const TwoPlayerTestSetups = [
   },
 ];
 
-export const Attempts = 1;
+export const Attempts = 2;

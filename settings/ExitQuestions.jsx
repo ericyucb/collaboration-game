@@ -38,46 +38,158 @@ export const EXITQUESTIONS = [
     ],
   },
   {
-    'title': 'Strategy and Advice',
-    'questions': [
-      {
-        question: 'Please provide a concise description of your approach to the game.',
-        tag: 'approach',
-        type: 'fr',
-      },
-      {
-        question: 'Please select the strategy/strategies that best align with your approach to navigating the maze.',
-        tag: 'strategy',
-        type: 'ms',
-        choices: [
-          'Optimal Strategy: Prioritize speed and efficiency in navigating the maze.',
-          'Explorer Strategy: Prioritize discovering the layout of the maze over reaching goals quickly.',
-          'Conservative Strategy: Prioritize safe and familiar routes, avoiding exploration or deviation.',
-          'Roamer Strategy: Frequently changing directions, reversing decisions, and using various strategies.',
-          'Adapter Strategy: Players adapt their strategies based on the evolving game dynamics, displaying flexibility in decision-making and adjusting approaches as needed.'
-        ],
-        direction: 'column'
-      },
-      {
-        question: 'How did your strategy change for the second round?',
-        tag: 'change',
-        type: 'fr',
-      },
-      {
-        question: 'Which type of advice do you believe would most effectively improve your score?',
-        tag: 'advice',
-        type: 'mc',
-        choices: [
-          'Recommendations for the next optimal action',
-          'Clear and specific information about the locations of objectives or resources'
-        ],
-        direction: 'row'
-      }
+    'title': 'Strategy and Advice -- First Two Round',
+    "questions": [
+    {
+      "question": "How did you approach playing this specific board? What plans or methods did you employ while playing?",
+      "tag": "gameplay-description",
+      "type": "fr"
+    },
+    {
+      "question": "If you were to give one piece of advice to another player about this board, what would it be?",
+      "tag": "advice",
+      "type": "fr"
+    },
+    {
+      "question": "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
+      "tag": "strategy-preference",
+      "type": "seven"
+    },
+    {
+      "question": "Which strategy do you think is the most effective for this board?",
+      "tag": "strategy-effectiveness",
+      "type": "mc",
+      "choices": [
+        "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
+        "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
+      ],
+      "direction": "column"
+    },
+    {
+      "question": "How did your strategy change for the second attempt of this board?",
+      "tag": "strategy-change",
+      "type": "fr"
+    },
+    {
+      "question": "What strategies can be applied for all boards throughout this Maze Game?",
+      "tag": "universal-strategies",
+      "type": "fr"
+    },
+    {
+      "question": "Which type of advice do you believe would most effectively improve your score?",
+      "tag": "effective-advice",
+      "type": "mc",
+      "choices": [
+        "Recommendations for the next optimal action",
+        "Clear and specific information about the locations of objectives or resources"
+      ],
+      "direction": "row"
+    }
+    ],
+  },
+  {
+    'title': 'Strategy and Advice -- Second Two Round',
+    "questions": [
+    {
+      "question": "How did you approach playing this specific board? What plans or methods did you employ while playing?",
+      "tag": "gameplay-description",
+      "type": "fr"
+    },
+    {
+      "question": "If you were to give one piece of advice to another player about this board, what would it be?",
+      "tag": "advice",
+      "type": "fr"
+    },
+    {
+      "question": "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
+      "tag": "strategy-preference",
+      "type": "seven"
+    },
+    {
+      "question": "Which strategy do you think is the most effective for this board?",
+      "tag": "strategy-effectiveness",
+      "type": "mc",
+      "choices": [
+        "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
+        "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
+      ],
+      "direction": "column"
+    },
+    {
+      "question": "How did your strategy change for the second attempt of this board?",
+      "tag": "strategy-change",
+      "type": "fr"
+    },
+    {
+      "question": "What strategies can be applied for all boards throughout this Maze Game?",
+      "tag": "universal-strategies",
+      "type": "fr"
+    },
+    {
+      "question": "Which type of advice do you believe would most effectively improve your score?",
+      "tag": "effective-advice",
+      "type": "mc",
+      "choices": [
+        "Recommendations for the next optimal action",
+        "Clear and specific information about the locations of objectives or resources"
+      ],
+      "direction": "row"
+    }
+    ],
+  },
+  {
+    'title': 'Strategy and Advice -- Third Two Round',
+    "questions": [
+    {
+      "question": "How did you approach playing this specific board? What plans or methods did you employ while playing?",
+      "tag": "gameplay-description",
+      "type": "fr"
+    },
+    {
+      "question": "If you were to give one piece of advice to another player about this board, what would it be?",
+      "tag": "advice",
+      "type": "fr"
+    },
+    {
+      "question": "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
+      "tag": "strategy-preference",
+      "type": "seven"
+    },
+    {
+      "question": "Which strategy do you think is the most effective for this board?",
+      "tag": "strategy-effectiveness",
+      "type": "mc",
+      "choices": [
+        "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
+        "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
+      ],
+      "direction": "column"
+    },
+    {
+      "question": "How did your strategy change for the second attempt of this board?",
+      "tag": "strategy-change",
+      "type": "fr"
+    },
+    {
+      "question": "What strategies can be applied for all boards throughout this Maze Game?",
+      "tag": "universal-strategies",
+      "type": "fr"
+    },
+    {
+      "question": "Which type of advice do you believe would most effectively improve your score?",
+      "tag": "effective-advice",
+      "type": "mc",
+      "choices": [
+        "Recommendations for the next optimal action",
+        "Clear and specific information about the locations of objectives or resources"
+      ],
+      "direction": "row"
+    }
     ],
   },
   {
     'title': 'Collaboration',
-    'blurb': 'Imagine a scenario where you are paired with another player to play this game. Both of you have individual goals as well as shared goals, aiming to minimize the total number of steps taken. Assume there are limited chances for communication.',
+    'blurb': 'Collaborative Gameplay Scenario: Imagine a scenario where you are paired with another player to play this game. Both of you have individual goals as well as shared goals, aiming to minimize the total number of steps taken. Assume that communication comes at a cost (lose turns for action).',
     'questions': [
       {
         question: 'What information would you consider most critical to share with your partner?',
@@ -113,48 +225,62 @@ export const EXITQUESTIONS = [
     'blurb': 'Answer the following questions in the scale from 1 to 7',
     'questions': [
       {
-        question: `Who would you prefer as a teammate? (1- Team Priority, 7- Personal Priority)
-
-        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer.
+        question: `Who would you prefer as a teammate? (1- Explorer, 7- Conservative)
         
-        7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
+        1. Explorer: I like to explore new directions on the board, even if I've found a good strategy already;
+        
+        7. Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.`,
+        tag: 'strategy',
+        type: 'seven'
+      },
+      
+      {
+        question: `When working together to solve problems, which method do you prefer? (1- Divide and Conquer, 7- Tackle Together)
+        
+        1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
+        
+        7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
+        tag: 'problem-solving',
+        type: 'seven'
+      },
+      
+      {
+        question: `Who would you prefer as a teammate? (1- Divide and Conquer, 7- Tackle Together)
+        
+        1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
+        
+        7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
         tag: 'teamwork',
         type: 'seven'
       },
+      
       {
-        question: `Who would you prefer as a teammate? (1- Divide and Conquer, 7- Tackle Together)\n\n
-
-        1: Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish.\n\n
-
-        7: Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
-        tag: 'teamPreference',
+        question: `If you are reading this question, please select option 7- Tackle Together
+        
+        1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
+        
+        7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
+        tag: 'compliance',
         type: 'seven'
       },
+      
       {
-        question: `If you are reading this question, please select option 7- Tackle Together.\n\n
+        question: `When deciding on goals in a group setting, which would you do? (1- Team Priority, 7- Personal Priority)
         
-        1: Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish.\n\n
-        
-        7: Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
-        tag: 'taskManagement',
-        type: 'seven'
-      },
-      {
-        question: `When deciding on goals in a group setting, which would you do? (1- Team Priority, 7- Personal Priority)\n\n
-        
-        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer.\n\n
+        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer;
         
         7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
-        tag: 'goalSetting',
+        tag: 'goal-setting',
         type: 'seven'
       },
+      
       {
-        question: `Who would you prefer as a teammate? (1- Team Priority, 7- Personal Priority)\n\n
+        question: `Who would you prefer as a teammate? (1- Team Priority, 7- Personal Priority)
         
-        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer.\n\n
+        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer;
         
         7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
-        tag: 'teammateChoice',
+        tag: 'team-preference',
         type: 'seven'
       }
     ]
