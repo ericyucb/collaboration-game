@@ -4,7 +4,7 @@ const LIKERT_SCALE = ['1 - Strongly Disagree', '2 - Disagree', '3 - Neutral', '4
 const SEVEN_SCALE = ['1', '2', '3 ', '4', '5 ', '6', '7']
 
 
-export function Question({ question, type, tag, choices=[], value=null, solution={}, format, setAnswer }) {
+export function Question({ question, type, tag, choices=[], value=null, solution=null, format, setAnswer }) {
   const answerSpace = (type, tag, choices, value, direction, disabled, setAnswer) => {
     if (type === 'likert') choices = LIKERT_SCALE
     if (type === 'seven') choices = SEVEN_SCALE

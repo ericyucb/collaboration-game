@@ -1,7 +1,7 @@
 export const EXITQUESTIONS = [
   {
-    'title': 'General Feedback',
-    'questions': [
+    title: 'General Feedback',
+    questions: [
       {
         question: 'Rate your agreement with the following statement: The rules of this game were easy to understand.',
         tag: 'rules',
@@ -38,159 +38,159 @@ export const EXITQUESTIONS = [
     ],
   },
   {
-    'title': 'Strategy and Advice -- First Two Round',
-    "questions": [
+    title: 'Strategy and Advice -- First Two Rounds',
+    questions: [
+      {
+        question: "How did you approach playing this specific board? What plans or methods did you employ while playing?",
+        tag: "gameplay-description",
+        type: "fr"
+      },
+      {
+        question: "If you were to give one piece of advice to another player about this board, what would it be?",
+        tag: "advice",
+        type: "fr"
+      },
+      {
+        question: "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
+        tag: "strategy-preference",
+        type: "seven"
+      },
+      {
+        question: "Which strategy do you think is the most effective for this board?",
+        tag: "strategy-effectiveness",
+        type: "mc",
+        choices: [
+          "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
+          "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
+        ],
+        direction: "column"
+      },
+      {
+        question: "How did your strategy change for the second attempt of this board?",
+        tag: "strategy-change",
+        type: "fr"
+      },
+      {
+        question: "What strategies can be applied for all boards throughout this Maze Game?",
+        tag: "universal-strategies",
+        type: "fr"
+      },
+      {
+        question: "Which type of advice do you believe would most effectively improve your score?",
+        tag: "effective-advice",
+        type: "mc",
+        choices: [
+          "Recommendations for the next optimal action",
+          "Clear and specific information about the locations of objectives or resources"
+        ],
+        direction: "row"
+      }
+    ],
+  },
+  {
+    title: 'Strategy and Advice -- Second Two Rounds',
+    questions: [
     {
-      "question": "How did you approach playing this specific board? What plans or methods did you employ while playing?",
-      "tag": "gameplay-description",
-      "type": "fr"
+      question: "How did you approach playing this specific board? What plans or methods did you employ while playing?",
+      tag: "gameplay-description",
+      type: "fr"
     },
     {
-      "question": "If you were to give one piece of advice to another player about this board, what would it be?",
-      "tag": "advice",
-      "type": "fr"
+      question: "If you were to give one piece of advice to another player about this board, what would it be?",
+      tag: "advice",
+      type: "fr"
     },
     {
-      "question": "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
-      "tag": "strategy-preference",
-      "type": "seven"
+      question: "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
+      tag: "strategy-preference",
+      type: "seven"
     },
     {
-      "question": "Which strategy do you think is the most effective for this board?",
-      "tag": "strategy-effectiveness",
-      "type": "mc",
-      "choices": [
+      question: "Which strategy do you think is the most effective for this board?",
+      tag: "strategy-effectiveness",
+      type: "mc",
+      choices: [
         "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
         "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
       ],
-      "direction": "column"
+      direction: "column"
     },
     {
-      "question": "How did your strategy change for the second attempt of this board?",
-      "tag": "strategy-change",
-      "type": "fr"
+      question: "How did your strategy change for the second attempt of this board?",
+      tag: "strategy-change",
+      type: "fr"
     },
     {
-      "question": "What strategies can be applied for all boards throughout this Maze Game?",
-      "tag": "universal-strategies",
-      "type": "fr"
+      question: "What strategies can be applied for all boards throughout this Maze Game?",
+      tag: "universal-strategies",
+      type: "fr"
     },
     {
-      "question": "Which type of advice do you believe would most effectively improve your score?",
-      "tag": "effective-advice",
-      "type": "mc",
-      "choices": [
+      question: "Which type of advice do you believe would most effectively improve your score?",
+      tag: "effective-advice",
+      type: "mc",
+      choices: [
         "Recommendations for the next optimal action",
         "Clear and specific information about the locations of objectives or resources"
       ],
-      "direction": "row"
+      direction: "row"
     }
     ],
   },
   {
-    'title': 'Strategy and Advice -- Second Two Round',
-    "questions": [
+    title: "Strategy and Advice -- Last Two Rounds",
+    questions: [
     {
-      "question": "How did you approach playing this specific board? What plans or methods did you employ while playing?",
-      "tag": "gameplay-description",
-      "type": "fr"
+      question: "How did you approach playing this specific board? What plans or methods did you employ while playing?",
+      tag: "gameplay-description",
+      type: "fr"
     },
     {
-      "question": "If you were to give one piece of advice to another player about this board, what would it be?",
-      "tag": "advice",
-      "type": "fr"
+      question: "If you were to give one piece of advice to another player about this board, what would it be?",
+      tag: "advice",
+      type: "fr"
     },
     {
-      "question": "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
-      "tag": "strategy-preference",
-      "type": "seven"
+      question: "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
+      tag: "strategy-preference",
+      type: "seven"
     },
     {
-      "question": "Which strategy do you think is the most effective for this board?",
-      "tag": "strategy-effectiveness",
-      "type": "mc",
-      "choices": [
+      question: "Which strategy do you think is the most effective for this board?",
+      tag: "strategy-effectiveness",
+      type: "mc",
+      choices: [
         "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
         "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
       ],
-      "direction": "column"
+      direction: "column"
     },
     {
-      "question": "How did your strategy change for the second attempt of this board?",
-      "tag": "strategy-change",
-      "type": "fr"
+      question: "How did your strategy change for the second attempt of this board?",
+      tag: "strategy-change",
+      type: "fr"
     },
     {
-      "question": "What strategies can be applied for all boards throughout this Maze Game?",
-      "tag": "universal-strategies",
-      "type": "fr"
+      question: "What strategies can be applied for all boards throughout this Maze Game?",
+      tag: "universal-strategies",
+      type: "fr"
     },
     {
-      "question": "Which type of advice do you believe would most effectively improve your score?",
-      "tag": "effective-advice",
-      "type": "mc",
-      "choices": [
+      question: "Which type of advice do you believe would most effectively improve your score?",
+      tag: "effective-advice",
+      type: "mc",
+      choices: [
         "Recommendations for the next optimal action",
         "Clear and specific information about the locations of objectives or resources"
       ],
-      "direction": "row"
+      direction: "row"
     }
     ],
   },
   {
-    'title': 'Strategy and Advice -- Third Two Round',
-    "questions": [
-    {
-      "question": "How did you approach playing this specific board? What plans or methods did you employ while playing?",
-      "tag": "gameplay-description",
-      "type": "fr"
-    },
-    {
-      "question": "If you were to give one piece of advice to another player about this board, what would it be?",
-      "tag": "advice",
-      "type": "fr"
-    },
-    {
-      "question": "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
-      "tag": "strategy-preference",
-      "type": "seven"
-    },
-    {
-      "question": "Which strategy do you think is the most effective for this board?",
-      "tag": "strategy-effectiveness",
-      "type": "mc",
-      "choices": [
-        "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
-        "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
-      ],
-      "direction": "column"
-    },
-    {
-      "question": "How did your strategy change for the second attempt of this board?",
-      "tag": "strategy-change",
-      "type": "fr"
-    },
-    {
-      "question": "What strategies can be applied for all boards throughout this Maze Game?",
-      "tag": "universal-strategies",
-      "type": "fr"
-    },
-    {
-      "question": "Which type of advice do you believe would most effectively improve your score?",
-      "tag": "effective-advice",
-      "type": "mc",
-      "choices": [
-        "Recommendations for the next optimal action",
-        "Clear and specific information about the locations of objectives or resources"
-      ],
-      "direction": "row"
-    }
-    ],
-  },
-  {
-    'title': 'Collaboration',
-    'blurb': 'Collaborative Gameplay Scenario: Imagine a scenario where you are paired with another player to play this game. Both of you have individual goals as well as shared goals, aiming to minimize the total number of steps taken. Assume that communication comes at a cost (lose turns for action).',
-    'questions': [
+    title: 'Collaboration',
+    blurb: 'Collaborative Gameplay Scenario: Imagine a scenario where you are paired with another player to play this game. Both of you have individual goals as well as shared goals, aiming to minimize the total number of steps taken. Assume that communication comes at a cost (lose turns for action).',
+    questions: [
       {
         question: 'What information would you consider most critical to share with your partner?',
         tag: 'communication',

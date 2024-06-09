@@ -2,10 +2,12 @@ import { ClassicListenersCollector } from "@empirica/core/admin/classic";
 import { OnePlayerSetups, TwoPlayerSetups, OnePlayerIntroSetup, TwoPlayerIntroSetup, Attempts } from "../../settings/Setups";
 import { updateGame, goalFulfilled } from '../../settings/Utils';
 import { INTROQUESTIONS } from '../../settings/IntroQuestions';
+import { MIDGAMEQUESTIONS } from '../../settings/MidgameQuestions'
 import { EXITQUESTIONS } from '../../settings/ExitQuestions';
 export const Empirica = new ClassicListenersCollector();
 
-const createMazeGameRoundParams = (roundName, setup, setupIndex=-1, intro=false) => {
+let roundCounter = 0;
+const createMazeGameRoundParams = (roundName, setup, setupIndex=-1, intro=false, lastAttempt=false) => {
   params = {
     name: roundName,
     setup: setup,
@@ -21,6 +23,7 @@ const createMazeGameRoundParams = (roundName, setup, setupIndex=-1, intro=false)
         currMax),
       -1) + 1,
     intro: intro,
+    lastAttempt: lastAttempt,
   }
   return params
 }
@@ -55,20 +58,20 @@ Empirica.onGameStart(({ game }) => {
   });
 
   // Add rest of rounds
-  setups.forEach(setup => {
-    let setupIndex = setup.setupIndex;
+  setups.forEach((setup, setupIndex) => {
     setup = setup.setup;
 
     for (let i = 0; i < Attempts; i++) {
       const roundName = `Setup ${setup.name} | Attempt ${i + 1}`;
-      const round = game.addRound(createMazeGameRoundParams(roundName, setup, setupIndex, false));
+      let round = game.addRound(createMazeGameRoundParams(roundName, setup, setupIndex, false, i == Attempts - 1));
   
       round.addStage({
         name: 'Maze Game',
         duration: 60,
       });
-
       console.log(`Created ${roundName}`);
+
+      roundCounter++; // Increment round counter after each setup
     }
   });
 
@@ -107,14 +110,28 @@ Empirica.onStageStart(({ stage }) => {
     });
   } else if (stageName === 'Intro End') {
     stage.currentGame.players.forEach(player => {
-      player.set('questionaire', INTROQUESTIONS.reduce((obj, question) => ({...obj, [question.tag]: null}), {}))
-      player.set('submit check', false)
-      player.set('check complete', false)
+      player.set('intro questionaire', INTROQUESTIONS.reduce((obj, question) => ({...obj, [question.tag]: null}), {}))
+      player.set('intro submit check', false)
+      player.set('intro check complete', false)
       if (player.stage !== undefined) { // For weird Heisenbug player.stage not being defined
         player.stage.set('help', false)
       }
     })
-  }
+  } else if (stageName === 'Maze Game Survey') {
+    const setupName = stage.round.get('setup').name
+    stage.currentGame.players.forEach(player => {
+      player.set(`${setupName} questionaire`, MIDGAMEQUESTIONS.reduce(
+        (obj, category) => ({...obj, [category.title]: category.questions.reduce(
+          (obj, question) => ({...obj, [question.tag]: null}),
+          {})}),
+        {}
+      ))
+      player.set(`${setupName} submit check`, false)
+      if (player.stage !== undefined) { // For weird Heisenbug player.stage not being defined
+        player.stage.set('help', false)
+      }
+    })
+  } 
 });
 
 Empirica.onStageEnded(({ stage }) => {
@@ -155,10 +172,17 @@ Empirica.onStageEnded(({ stage }) => {
           scores.push(player.round.get('score'));
           player.game.set('scores', scores);
         })
-        stage.round.addStage({
-          name: `Maze Game End`,
-          duration: 60,
-        });
+        if (stage.round.get('lastAttempt')) {
+          stage.round.addStage({
+            name: `Maze Game Survey`,
+            duration: 3000,
+          })
+        } else {
+          stage.round.addStage({
+            name: `Maze Game End`,
+            duration: 60,
+          });
+        }
       }
       console.log('Goals fulfilled')
     } else {
@@ -174,7 +198,14 @@ Empirica.onStageEnded(({ stage }) => {
 });
 
 Empirica.onRoundEnded(({ round }) => {
-  console.log(`Ending ${round.get('name')}`)
+  console.log(`Ending ${round.get('name')}`);
 });
 
-Empirica.onGameEnded(({ game }) => { });
+Empirica.onGameEnded(({ game }) => { 
+  game.players.forEach(player => player.set('exit questionaire', EXITQUESTIONS.reduce(
+    (obj, category) => ({...obj, [category.title]: category.questions.reduce(
+      (obj, question) => ({...obj, [question.tag]: null}),
+      {})}),
+    {}
+  )));
+});
