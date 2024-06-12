@@ -1,49 +1,52 @@
 export const MIDGAMEQUESTIONS = [
   {
-    'title': 'Open-Ended Feedback',
+    'title': 'Strategy and Advice',
     'questions': [
-      {
-        question: 'What strategies did you use during your gameplay?',
-        tag: 'gameplay_strategies',
-        type: 'fr',
-      },
-      {
-        question: 'If you were to offer advice to another player, what single piece of guidance would you give based on your experience?',
-        tag: 'player_advice',
-        type: 'fr',
-      },
-    ],
-  },
-  {
-    'title': 'Multiple Choice [Select all that apply]',
-    'questions': [
-      {
-        question: 'Which of the following strategies do you think works well in the game? (Check all that apply)',
-        tag: 'effective_strategies',
-        type: 'ms',
-        choices: [
-          "Explorers: Focus on uncovering the maze's layout rather than swiftly reaching objectives.",
-          'Conservatives: Emphasize sticking to secure and familiar paths, steering clear of exploration or deviation.',
-          'Adapters: Adjust strategies according to the changing game dynamics, demonstrating flexibility in decision-making.'
-        ],
-        direction: 'column',
-      },
-    ],
-  },
-  {
-    'title': 'Multiple Choice [Select one option]',
-    'questions': [
-      {
-        question: 'Which strategy do you think is the most effective?',
-        tag: 'most_effective_strategy',
-        type: 'mc',
-        choices: [
-          "Explorers: Focus on uncovering the maze's layout rather than swiftly reaching objectives.",
-          'Conservatives: Emphasize sticking to secure and familiar paths, steering clear of exploration or deviation.',
-          'Adapters: Adjust strategies according to the changing game dynamics, demonstrating flexibility in decision-making.'
-        ],
-        direction: 'column',
-      },
+    {
+      question: "How did you approach playing this specific board? What plans or methods did you employ while playing?",
+      tag: "gameplay-description",
+      type: "fr"
+    },
+    {
+      question: "If you were to give one piece of advice to another player about this board, what would it be?",
+      tag: "advice",
+      type: "fr"
+    },
+    {
+      question: "On a scale from 1 to 7, please select the option that best describes your approach to playing the game (1- Explorer, 7- Conservative):\n\n1: Explorer: I like to explore new directions on the board, even if I've found a good strategy already.\n7: Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.",
+      tag: "strategy-preference",
+      type: "seven"
+    },
+    {
+      question: "Which strategy do you think is the most effective for this board?",
+      tag: "strategy-effectiveness",
+      type: "mc",
+      choices: [
+        "Explorer: I like to explore new directions on the board, even if I've found a good strategy already.",
+        "Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before."
+      ],
+      direction: "column"
+    },
+    {
+      question: "How did your strategy change for the second attempt of this board?",
+      tag: "strategy-change",
+      type: "fr"
+    },
+    {
+      question: "What strategies can be applied for all boards throughout this Maze Game?",
+      tag: "universal-strategies",
+      type: "fr"
+    },
+    {
+      question: "Which type of advice do you believe would most effectively improve your score?",
+      tag: "effective-advice",
+      type: "mc",
+      choices: [
+        "Recommendations for the next optimal action",
+        "Clear and specific information about the locations of objectives or resources"
+      ],
+      direction: "row"
+    }
     ],
   },
 ];
