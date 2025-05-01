@@ -6,7 +6,7 @@ import {
 
 import { HelpButton } from './HelpPopup'
 
-import { ITEM_NAMES } from '../../../settings/Settings'
+import { ITEM_NAMES, ITEM_VALUES } from '../../../settings/Settings'
 import '../css/Dashboard.css'
 
 export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, collectiveBag, canMove, visionAllowed }) {
@@ -28,6 +28,7 @@ export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, colle
 								sharedGoal={goal}
 								canMove={canMove}
 							/>
+					
 						</> :
 						<>
 							<h3><u>Bag/Goal</u></h3>
@@ -36,6 +37,7 @@ export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, colle
 								individualGoal={goal}
 								canMove={canMove}
 							/>
+							
 						</>
 				}
 			</div>
@@ -67,8 +69,13 @@ function BagList({ bag, collectiveBag=null, individualGoal, sharedGoal=null, can
 				className={canMove && bag[item] ? 'list-item can-drop' : 'list-item'}
 				onClick={() => canMove && bag[item] !== 0 ? player.stage.set('drop item', item) : null}
 			>
-        {bag[item]}/
-        <span className={bag[item] < individualGoal[item] ? 'list-item-incomplete' : 'list-item-complete'}>{individualGoal[item]}</span>
+
+{/* capitalize the first letetr */}
+		{itemName.toUpperCase()} points: {bag[item] * ITEM_VALUES[item]}
+	
+		
+        {/* {bag[item]}/ */}
+        {/* <span className={bag[item] < individualGoal[item] ? 'list-item-incomplete' : 'list-item-complete'}>{individualGoal[item]}</span> */}
 				{
 					sharedGoal ?
             <span className={collectiveBag[item] < sharedGoal[item] ? 'list-item-incomplete' : 'list-item-complete'}>
@@ -76,7 +83,7 @@ function BagList({ bag, collectiveBag=null, individualGoal, sharedGoal=null, can
             </span> :
             null
 				}
-        {` ${itemName}`}
+     
 			</p>
 		)
 	}

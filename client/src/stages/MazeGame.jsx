@@ -25,9 +25,31 @@ export function MazeGame() {
 	const otherPlayer = players.length === 2 ? players.filter(p => p.id !== player.id)[0] : null
 
 	const action = player.stage.get('action')
-	const canMove = action === null
-
-	const [ nextBoard, nextPlayerPos, nextPlayerBag ] = updateGame(round.get('board'), action, player)
+	
+	// Determine if player can move based on current action
+	// Player can move when there's no action or after collecting
+	const hasCollectAction = action != null && action.type === 'collect'
+	const hasMoveAction = action != null && action.type === 'move'
+	const canMove = action === null || hasCollectAction
+	
+	// For debugging
+	console.log('Current action:', action, 'Can move:', canMove)
+	
+	// Get the current board state
+	const currentBoard = round.get('board')
+	const currentPlayerPos = player.round.get('position')
+	const currentPlayerBag = player.round.get('bag')
+	
+	// Use updateGame to predict next state only for move actions
+	// For collect actions, we've already updated the board and bag
+	let nextBoard = currentBoard
+	let nextPlayerPos = currentPlayerPos
+	let nextPlayerBag = currentPlayerBag
+	
+	if (action && action.type === 'move') {
+		// Only use updateGame for move actions
+		[nextBoard, nextPlayerPos, nextPlayerBag] = updateGame(currentBoard, action, player)
+	}
 
   const capacity = round.get('capacity')
 

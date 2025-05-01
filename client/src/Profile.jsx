@@ -6,7 +6,7 @@ import {
 import React from 'react'
 import { Avatar } from './components/Avatar'
 import { Timer } from './components/Timer'
-
+import { TURNS } from '../../settings/Settings'
 export function Profile() {
 	const player = usePlayer()
 	const round = useRound()
@@ -30,7 +30,7 @@ export function Profile() {
             Turns
 					</div>
 					<div className="text-3xl font-semibold !leading-none tabular-nums">
-						{score}
+						{score}/{TURNS}
 					</div>
 				</div>
 				<div className="h-11 w-11">

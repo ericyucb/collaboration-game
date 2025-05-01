@@ -5,11 +5,24 @@ import {
 
 import '../css/Controls.css'
 
-import { ControlButton, ControlIconButton } from './ControlButton'
+import { ControlButton } from './ControlButton'
 
 export function Controls({ canMove }) {
 	const player = usePlayer()
-
+	
+	const action = player.stage.get('action')
+	
+	// Check what type of action has been performed
+	const hasMovedAction = action != null && action.type === 'move'
+	const hasAction = action != null
+	
+	// Only show the proceed button after a move action, not after collecting
+	const showProceed = hasMovedAction
+	const showReset = hasAction
+	
+	// Can move only if no action has been performed
+	const playerCanMove = action === null
+	
 	const collectItem = player.stage.get('collect item')
 	const dropItem = player.stage.get('drop item')
 
@@ -45,11 +58,11 @@ export function Controls({ canMove }) {
 
 	return (
 		<div className='controls'>
-			<ControlIconButton name='Collect' onClick={handleCollectItem} displayIcon={collectItem} />
-			<ControlIconButton name='Drop' onClick={handleDropItem} displayIcon={dropItem} />
+			{/* <ControlIconButton name='Collect' onClick={handleCollectItem} displayIcon={collectItem} /> */}
+			{/* <ControlIconButton name='Drop' onClick={handleDropItem} displayIcon={dropItem} /> */}
       {/* <ControlButton name='Skip' onClick={handleSkip} isLive={canMove} /> */}
-			<ControlButton name='Proceed' onClick={handleProceed} isLive={!canMove} />
-			<ControlButton name='Reset' onClick={handleReset} isLive={!canMove} />
+			{<ControlButton name='Proceed' onClick={handleProceed} isLive={showProceed} />}
+			{/* <ControlButton name='Reset' onClick={handleReset} isLive={true} />} */}
 		</div>
 	)
 }
