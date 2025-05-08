@@ -12,11 +12,16 @@ import '../css/Dashboard.css'
 export function Dashboard({ goal, individualGoal, capacity, bag, bagTotal, collectiveBag, canMove, visionAllowed }) {
   const player = usePlayer()
 
+  player.round.set('totalScore', bag.reduce((acc, curr, index) => acc + curr * ITEM_VALUES[index], 0))
+
+const totalScore = player.round.get('totalScore', 0)
 	return (
 		<div className='dashboard'>
 			<div className='bag flex-1'>
 				<h2 className='bag-title'><u>Bag</u></h2>
-				<h5 className='capacity'>Bag Total: <span style={bagTotal === capacity ? {color: 'red'} : {}}>{bagTotal}/{capacity}</span></h5>
+				<h5 className='capacity'>Total Items to Collect: <span style={bagTotal === capacity ? {color: 'red'} : {}}>{bagTotal}/{capacity}</span></h5>
+				<h5 className='capacity'>Total Score: {totalScore}</h5>
+
 				{
 					individualGoal ?
 						<>

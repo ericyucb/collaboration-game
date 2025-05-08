@@ -187,102 +187,102 @@ export const EXITQUESTIONS = [
   //   }
   //   ],
   // },
-  {
-    title: 'Collaboration',
-    blurb: 'Collaborative Gameplay Scenario: Imagine a scenario where you are paired with another player to play this game. Both of you have individual goals as well as shared goals, aiming to minimize the total number of steps taken. Assume that communication comes at a cost (lose turns for action).',
-    questions: [
-      {
-        question: 'What information would you consider most critical to share with your partner?',
-        tag: 'communication',
-        type: 'fr'
-      },
-      {
-        question: 'When approaching problem-solving in a collaborative setting, which strategy do you prefer?',
-        tag: 'colab-strategy',
-        type: 'mc',
-        choices: [
-          'Divide and Conquer: Each player focuses on different objectives; efficient but risks failure if one player cannot complete their tasks.',
-          'Tackle Together: Focus on completing tasks as a duo; fosters teamwork but may increase the total number of steps taken.',
-          'Flexible Approach Based on Scenario: Adapt strategy based on current needs; versatile but requires good judgment and communication.'
-        ],
-        direction: 'column'
-      },
-      {
-        question: 'When prioritizing goals in a collaborative setting, which approach do you prefer?',
-        tag: 'priority-approach',
-        type: 'mc',
-        choices: [
-          'Equal Priority for Individual and Collaborative Goals: Ensures balanced effort towards all objectives but may lead to inefficiencies if one set of goals requires more resources than the other.',
-          'Higher Priority for Collaborative Goals: Maximizes the benefit to the team and possibly the overall score, but individual goals might be neglected, potentially affecting personal scores or achievements.',
-          'Higher Priority for Individual Goals: Focuses on personal achievements, which could lead to a higher individual score but may compromise the team\'s efficiency and overall success.'
-        ],
-        direction: 'column'
-      }
-    ],
-  },
-  {
-    'title': 'Collaboration-Team',
-    'blurb': 'Answer the following questions in the scale from 1 to 7',
-    'questions': [
-      {
-        question: `Who would you prefer as a teammate? (1- Explorer, 7- Conservative)
+  // {
+  //   title: 'Collaboration',
+  //   blurb: 'Collaborative Gameplay Scenario: Imagine a scenario where you are paired with another player to play this game. Both of you have individual goals as well as shared goals, aiming to minimize the total number of steps taken. Assume that communication comes at a cost (lose turns for action).',
+  //   questions: [
+  //     {
+  //       question: 'What information would you consider most critical to share with your partner?',
+  //       tag: 'communication',
+  //       type: 'fr'
+  //     },
+  //     {
+  //       question: 'When approaching problem-solving in a collaborative setting, which strategy do you prefer?',
+  //       tag: 'colab-strategy',
+  //       type: 'mc',
+  //       choices: [
+  //         'Divide and Conquer: Each player focuses on different objectives; efficient but risks failure if one player cannot complete their tasks.',
+  //         'Tackle Together: Focus on completing tasks as a duo; fosters teamwork but may increase the total number of steps taken.',
+  //         'Flexible Approach Based on Scenario: Adapt strategy based on current needs; versatile but requires good judgment and communication.'
+  //       ],
+  //       direction: 'column'
+  //     },
+  //     {
+  //       question: 'When prioritizing goals in a collaborative setting, which approach do you prefer?',
+  //       tag: 'priority-approach',
+  //       type: 'mc',
+  //       choices: [
+  //         'Equal Priority for Individual and Collaborative Goals: Ensures balanced effort towards all objectives but may lead to inefficiencies if one set of goals requires more resources than the other.',
+  //         'Higher Priority for Collaborative Goals: Maximizes the benefit to the team and possibly the overall score, but individual goals might be neglected, potentially affecting personal scores or achievements.',
+  //         'Higher Priority for Individual Goals: Focuses on personal achievements, which could lead to a higher individual score but may compromise the team\'s efficiency and overall success.'
+  //       ],
+  //       direction: 'column'
+  //     }
+  //   ],
+  // },
+  // {
+  //   'title': 'Collaboration-Team',
+  //   'blurb': 'Answer the following questions in the scale from 1 to 7',
+  //   'questions': [
+  //     {
+  //       question: `Who would you prefer as a teammate? (1- Explorer, 7- Conservative)
         
-        1. Explorer: I like to explore new directions on the board, even if I've found a good strategy already;
+  //       1. Explorer: I like to explore new directions on the board, even if I've found a good strategy already;
         
-        7. Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.`,
-        tag: 'strategy',
-        type: 'seven'
-      },
+  //       7. Conservative: Once I've found a good strategy, I stick with it and go after pieces I need, even if I've been in that area before.`,
+  //       tag: 'strategy',
+  //       type: 'seven'
+  //     },
       
-      {
-        question: `When working together to solve problems, which method do you prefer? (1- Divide and Conquer, 7- Tackle Together)
+  //     {
+  //       question: `When working together to solve problems, which method do you prefer? (1- Divide and Conquer, 7- Tackle Together)
         
-        1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
+  //       1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
         
-        7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
-        tag: 'problem-solving',
-        type: 'seven'
-      },
+  //       7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
+  //       tag: 'problem-solving',
+  //       type: 'seven'
+  //     },
       
-      {
-        question: `Who would you prefer as a teammate? (1- Divide and Conquer, 7- Tackle Together)
+  //     {
+  //       question: `Who would you prefer as a teammate? (1- Divide and Conquer, 7- Tackle Together)
         
-        1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
+  //       1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
         
-        7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
-        tag: 'teamwork',
-        type: 'seven'
-      },
+  //       7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
+  //       tag: 'teamwork',
+  //       type: 'seven'
+  //     },
       
-      {
-        question: `If you are reading this question, please select option 7- Tackle Together
+  //     {
+  //       question: `If you are reading this question, please select option 7- Tackle Together
         
-        1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
+  //       1. Divide and Conquer: Each person works on different tasks, which is efficient but risky if one person can't finish;
         
-        7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
-        tag: 'compliance',
-        type: 'seven'
-      },
+  //       7. Tackle Together: Work as a pair to finish tasks, promotes teamwork but might take more steps.`,
+  //       tag: 'compliance',
+  //       type: 'seven'
+  //     },
       
-      {
-        question: `When deciding on goals in a group setting, which would you do? (1- Team Priority, 7- Personal Priority)
+  //     {
+  //       question: `When deciding on goals in a group setting, which would you do? (1- Team Priority, 7- Personal Priority)
         
-        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer;
+  //       1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer;
         
-        7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
-        tag: 'goal-setting',
-        type: 'seven'
-      },
+  //       7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
+  //       tag: 'goal-setting',
+  //       type: 'seven'
+  //     },
       
-      {
-        question: `Who would you prefer as a teammate? (1- Team Priority, 7- Personal Priority)
+  //     {
+  //       question: `Who would you prefer as a teammate? (1- Team Priority, 7- Personal Priority)
         
-        1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer;
+  //       1. Team Priority: Focus on group goals for maximum benefit, but individual goals might suffer;
         
-        7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
-        tag: 'team-preference',
-        type: 'seven'
-      }
-    ]
-  }
+  //       7. Personal Priority: Focus on individual goals for personal achievement, but it might harm team success.`,
+  //       tag: 'team-preference',
+  //       type: 'seven'
+  //     }
+  //   ]
+  // }
 ]

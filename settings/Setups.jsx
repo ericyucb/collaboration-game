@@ -1,6 +1,6 @@
 export const OnePlayerSetups = [
   {
-    name: 'Oak',
+    name: 'Pine',
     goal: [1, 2, 1, 1],
     board: [
       [[ ], [ ], [2], [ ], [ ], [ ], [3]],
@@ -15,7 +15,7 @@ export const OnePlayerSetups = [
     capacity: 7,
   },
   {
-    name: 'Birch',
+    name: 'Oak',
     goal: [2, 3, 2, 1],
     board: [
       [[ ], [ ], [2], [ ], [ ], [ ], [3]],      // Row 0: purple at [0,2], red at [0,6]
@@ -30,7 +30,7 @@ export const OnePlayerSetups = [
     capacity: 10,
   },
   {
-    name: 'Pine',
+    name: 'Birch',
     goal: [3, 1, 2, 2],
     board: [
       [[ ], [ ], [2], [ ], [1], [ ], [3]],      // Row 0: purple at [0,2], blue at [0,4], red at [0,6]

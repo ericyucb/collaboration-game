@@ -18,7 +18,7 @@ export function IntroEnd() {
 	return (
 		<div className='game intro-end'>
       <p>
-        {`You took ${player.round.get('score')} turns! Before we start the official game, complete the following comprehension check.`}
+        {`You scored ${player.round.get('totalScore')} points. Before we start the official game, complete the following comprehension check.`}
       </p>
       <br />
       <Questionaire setupName='intro' questions={INTROQUESTIONS} submit={() => {}} disabled={complete} />

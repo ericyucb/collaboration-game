@@ -62,6 +62,8 @@ export function MazeGame() {
 
   const introRound = round.get('name') === 'Introduction Round'
 
+  console.log('total score', player.game.get('totalScore'))
+	console.log('scores', player.game.get('scores'))
 	return (
 		<div className='game'>
       {introRound ? <Tip /> : null}
@@ -90,7 +92,7 @@ export function MazeGame() {
 				/>
 			</div>
       <Controls canMove={canMove} />
-      {introRound ? null : <Scores scores={player.game.get('scores')} setups={game.get('setups')} />}
+      {introRound ? null : <Scores scores={player.game.get('totalScore')} setups={game.get('setups')} />}
       {player.stage.get('help') ? <HelpPopup /> : null}
 		</div>
 	)

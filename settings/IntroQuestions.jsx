@@ -6,11 +6,10 @@ export const INTROQUESTIONS = [
     choices: [
       'Move',
       'Collect',
-      'Drop',
       'Skip',
     ],
-    answer: 3,
-    explanation: 'The possible actions are \'Move,\' \'Collect,\' and \'Drop.\'',
+    answer: 2,
+    explanation: 'The possible actions are \'Move,\' and \'Collect,\'',
     direction: 'row',
   },
   {
@@ -45,27 +44,15 @@ export const INTROQUESTIONS = [
     tag: 'collect',
     type: 'mc',
     choices: [
-      'Click the item in the cell the player is in, click the \'Collect\' button, and then click the \'Proceed\' button.',
+      'Click the item in the cell the player is in.',
       'Click the item in the bag, click the \'Collect\' button, and then click the \'Proceed\' button.',
     ],
     answer: 0,
-    explanation: 'Note that there can be more than one item in a cell, so click the one you want to pick up!',
+    explanation: 'Correct!',
     direction: 'column',
   },
   {
-    question: 'How do you drop an item?',
-    tag: 'drop',
-    type: 'mc',
-    choices: [
-      'Click the item in the cell the player is in, click the \'Drop\' button, and then click the \'Proceed\' button.',
-      'Click the item in the bag, click the \'Drop\' button, and then click the \'Proceed\' button.',
-    ],
-    answer: 1,
-    explanation: 'Note that you can drop an item onto a cell that already has an item!',
-    direction: 'column',
-  },
-  {
-    question: 'Which of the following is the best number of turns?',
+    question: 'Which of the following is the best possible score?',
     tag: 'score',
     type: 'mc',
     choices: [
@@ -74,8 +61,8 @@ export const INTROQUESTIONS = [
       '15',
       '23',
     ],
-    answer: 1,
-    explanation: 'A lower number of turns is better.',
+    answer: 0,
+    explanation: 'The higher the score, the better.',
     direction: 'row',
   },
   {
@@ -88,8 +75,8 @@ export const INTROQUESTIONS = [
       '2',
       'Infinite',
     ],
-    answer: 3,
-    explanation: 'There is no limit to the number of items in a cell.',
+    answer: 1,
+    explanation: 'There can be only one item in a cell.',
     direction: 'row',
   },
 ]

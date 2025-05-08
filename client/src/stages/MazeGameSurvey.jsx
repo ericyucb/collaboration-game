@@ -15,7 +15,7 @@ export function MazeGameSurvey() {
   return (
     <div className='game maze-game-survey'>
       <p>
-        {`Congratulations! You took ${player.round.get('score')} turns! Please complete the following survey about the last couple of attempts on the same setup.`}
+        {`Congratulations! You scored ${player.round.get('totalScore')} point(s). Please complete the following survey about the last couple of attempts on the same setup.`}
       </p>
       <Questionaire
         title={`${round.get('setup').name} Questionaire`}

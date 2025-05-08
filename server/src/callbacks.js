@@ -47,6 +47,7 @@ Empirica.onGameStart(({ game }) => {
   // Initialize score arrays
   game.players.forEach(player => {
     player.game.set('scores', []);
+    player.game.set('totalScore', []);
   })
 
   console.log('Creating rounds');
@@ -183,6 +184,10 @@ Empirica.onStageEnded(({ stage }) => {
         });
       } else {
         players.forEach(player => {
+          const totalScore = [...player.game.get('totalScore')];
+          totalScore.push(player.round.get('totalScore'));
+          player.game.set('totalScore', totalScore);
+
           const scores = [...player.game.get('scores')];
           scores.push(player.round.get('score'));
           player.game.set('scores', scores);

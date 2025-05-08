@@ -13,7 +13,7 @@ export function MazeGameEnd() {
 	return (
 		<div className='game'>
 			<div className='next-setup-label'>
-				{`You took ${player.round.get('score')} turns! Click 'Continue' below to start the next setup (or finish the game if this was the last setup).`}
+				{`You scored ${player.round.get('totalScore')} points! Click 'Continue' below to start the next setup (or finish the game if this was the last setup).`}
 			</div>
 			<Button primary handleClick={() => player.stage.set('submit', true)}>
 				<p>Continue</p>
