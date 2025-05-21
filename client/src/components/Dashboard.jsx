@@ -36,7 +36,7 @@ const totalScore = player.round.get('totalScore', 0)
 					
 						</> :
 						<>
-							<h3><u>Bag/Goal</u></h3>
+							<h3><u>Items Collected</u></h3>
 							<BagList
 								bag={bag}
 								individualGoal={goal}
@@ -76,7 +76,7 @@ function BagList({ bag, collectiveBag=null, individualGoal, sharedGoal=null, can
 			>
 
 {/* capitalize the first letetr */}
-		{itemName.toUpperCase()} points: {bag[item] * ITEM_VALUES[item]}
+		{itemName.toUpperCase()} - {ITEM_VALUES[item]} point(s) each: {bag[item] * ITEM_VALUES[item]}
 	
 		
         {/* {bag[item]}/ */}
